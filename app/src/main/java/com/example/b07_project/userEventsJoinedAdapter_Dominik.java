@@ -11,56 +11,51 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class userEventsJoinedAdapter_Dominik extends RecyclerView.Adapter<userEventsJoinedAdapter_Dominik.VEViewHolder> {
+public class userEventsJoinedAdapter_Dominik extends RecyclerView.Adapter<userEventsJoinedAdapter_Dominik.UserEventsViewholder> {
     Context context;
-    ArrayList<eventModel> eventList = new ArrayList<>();
+    ArrayList<eventModel> events;
 
-    public userEventsJoinedAdapter_Dominik(Context context, ArrayList<eventModel> eventList) {
+    public userEventsJoinedAdapter_Dominik(Context context, ArrayList<eventModel> list) {
         this.context = context;
-        this.eventList = eventList;
+        this.events = list;
     }
 
     @NonNull
     @Override
-    public VEViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflate the layout here
-        // This is how we give look to our rows
-        LayoutInflater inflator = LayoutInflater.from(context);
-        View view = inflator.inflate(R.layout.event_row_recycler_view_dominik, parent, false);
-        return new userEventsJoinedAdapter_Dominik.VEViewHolder(view);
+    public userEventsJoinedAdapter_Dominik.UserEventsViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.event_row_recycler_view_dominik, parent, false);
+        return new userEventsJoinedAdapter_Dominik.UserEventsViewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VEViewHolder holder, int position) {
-        // Assign values to each row depending on the position
-        holder.title.setText(eventList.get(position).getName());
-        holder.venue.setText(eventList.get(position).getVenue());
-        holder.date.setText(eventList.get(position).getDate());
-        holder.time.setText(eventList.get(position).getTime());
-        holder.space.setText(eventList.get(position).getSpace());
-        holder.no_part.setText(eventList.get(position).getMaxParticipants());
+    public void onBindViewHolder(@NonNull UserEventsViewholder holder, int position) {
+        eventModel user = events.get(position);
+        holder.name.setText(user.getName());
+        holder.maxParticipants.setText(String.valueOf(user.getMaxParticipants()));
+        holder.date.setText(user.getDate());
+        holder.time.setText(user.getTime());
+        holder.venue.setText(user.getVenue());
+        holder.space.setText(user.getSpace());
+
     }
 
     @Override
     public int getItemCount() {
-        // Get total number of items
-        return eventList.size();
+        return events.size();
     }
 
-    public static class VEViewHolder extends RecyclerView.ViewHolder{
-        // Sort of like the onCreate method
-        // Assign data from row to certain variables
-        TextView title; TextView venue; TextView date;
-        TextView time; TextView no_part; TextView space;
-
-        public VEViewHolder(@NonNull View itemView) {
+    public static class UserEventsViewholder extends RecyclerView.ViewHolder {
+        TextView name, maxParticipants, date, time, space, venue;
+        public UserEventsViewholder(@NonNull View itemView)
+        {
             super(itemView);
-            title = itemView.findViewById(R.id.eventRowTitleid);
-            venue = itemView.findViewById(R.id.eventRowVenueid);
-            date = itemView.findViewById(R.id.eventRowDateid);
-            time = itemView.findViewById(R.id.eventRowTimeid);
-            no_part = itemView.findViewById(R.id.eventRowCountid);
-            space = itemView.findViewById(R.id.eventRowSpaceid);
+
+            name = itemView.findViewById(R.id.name);
+            maxParticipants = itemView.findViewById(R.id.maxParticipants);
+            date = itemView.findViewById(R.id.date);
+            time = itemView.findViewById(R.id.time);
+            venue = itemView.findViewById(R.id.venue);
+            space = itemView.findViewById(R.id.space);
         }
     }
 }

@@ -8,6 +8,7 @@ public class eventModel {
     public String venue;
     public String time;
     public String maxParticipants;
+    //public String space;
 
     private int participantsCount;
     long noParticipants;
