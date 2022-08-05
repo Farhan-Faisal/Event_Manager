@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class UserEventListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_event_list);
 
+        dbref = FirebaseDatabase.getInstance().getReference().child("Venues");
         sp = getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
 
         // Retrieve data from intent into shared preference
@@ -49,48 +51,86 @@ public class UserEventListActivity extends AppCompatActivity {
         }
         username = sp.getString("username", null);
 
-        String [] eventTitle = {"Soccer", "Basket Ball", "Hockey"};
-        String [] venueName = {"venue1", "venue2", "venue3"};
-        String [] eventDate = {"Dec 22, 2022", "Jan 21, 2022", "Nov 20, 2022"};
-        String [] spaceAvailability = {"Full", "Full", "Join"};
-        String [] noParticipants = {"22", "22", "18"};
-        String [] eventTime = {"Morning", "Evening", "Morning"};
+        ArrayList<Event> events = new ArrayList<>();
+        ArrayList<String> titles = new ArrayList<>();
+//        ArrayList<String> eventTitleList = new ArrayList<>(0);
+//        ArrayList<String> venueNameList = new ArrayList<>(0);
+//        ArrayList<String> eventDateList = new ArrayList<>(0);
+//        ArrayList<String> spaceAvailabilityList = new ArrayList<>(0);
+//        ArrayList<String> noParticipantsList = new ArrayList<>(0);
+//        ArrayList<String> eventTimeList = new ArrayList<>(0);
+
+//        String [] eventTitle = eventTitleList.toArray(new String[0]);
+//        String [] venueName = venueNameList.toArray(new String[0]);
+//        String [] eventDate = eventDateList.toArray(new String[0]);
+//        String [] spaceAvailability = spaceAvailabilityList.toArray(new String[0]);
+//        String [] noParticipants = noParticipantsList.toArray(new String[0]);
+//        String [] eventTime = eventTimeList.toArray(new String[0]);
 
         listView = findViewById(R.id.user_event_list_id);
 
         // Need to make out own adapter class
-        MyAdapter adapter = new MyAdapter(this, eventTitle, venueName, eventDate,
-                spaceAvailability, noParticipants, eventTime);
+        MyAdapter adapter = new MyAdapter(this, events, titles);
+//        MyAdapter adapter = new MyAdapter(this, eventTitleList, venueNameList, eventDateList,
+//                spaceAvailabilityList, noParticipantsList, eventTimeList);
+        //ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.event_node, R.id.eventTitleid, eventTitleList);
         listView.setAdapter(adapter);
 
         // Now, just need to create item click on list view
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                openSpecificEventActivity(username, eventTitle[position], venueName[position], eventDate[position],
-                        spaceAvailability[position], noParticipants[position], eventTime[position]);
+                openSpecificEventActivity(username, events.get(position));
             }
         });
+
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                events.clear();
+                titles.clear();
+                for (DataSnapshot venue: snapshot.getChildren()) {
+                    for (DataSnapshot event : venue.child("venueEvents").getChildren()) {
+
+                        try{
+                            Event e = event.getValue(Event.class);
+                            events.add(e);
+                            titles.add(e.name);
+//                            eventTitleList.add(event.child("name").getValue().toString());
+//                            venueNameList.add(event.child("venue").getValue().toString());
+//                            eventDateList.add(event.child("date").getValue().toString());
+//                            spaceAvailabilityList.add(event.child("space").getValue().toString());
+//                            noParticipantsList.add("5");
+//                            eventTimeList.add(event.child("time").getValue().toString() + " - " + event.child("endTime").getValue().toString());
+                        }
+                        catch(Exception e)
+                        {
+                            Log.d("Title", event.child("name").getValue().toString());
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        dbref.addValueEventListener(listener);
     }
 
     class MyAdapter extends ArrayAdapter<String>{
         Context context;
-        String [] rEventTitle;
-        String [] rVenueName;
-        String [] rEventDate;
-        String [] rSpaceAvailability;
-        String [] rNoParticipants;
-        String [] rEventTime;
+        ArrayList<Event> events;
 
-        MyAdapter(Context c, String[] title, String[] venue, String[] date,
-                  String[] space, String[] time, String[] count){
-            super(c, R.layout.event_node, R.id.eventTitleid, title);
-            this.rEventTitle = title;
-            this.rVenueName = venue;
-            this.rEventDate = date;
-            this.rSpaceAvailability = space;
-            this.rEventTime = time;
-            this.rNoParticipants = count;
+        MyAdapter(Context c, ArrayList<Event> events, ArrayList<String> titles){
+            super(c, R.layout.event_node, R.id.eventTitleid, titles);
+            ArrayList<String> title = new ArrayList<>();
+            for (Event e : events) {
+                title.add(e.name);
+            }
+            this.events = events;
         }
 
         @NonNull
@@ -107,27 +147,26 @@ public class UserEventListActivity extends AppCompatActivity {
             TextView count = eventNode.findViewById(R.id.eventCountid);
 
             // Need to set resources on views
-            title.setText(rEventTitle[position]);
-            venue.setText(rVenueName[position]);
-            date.setText(rEventDate[position]);
-            time.setText(rEventTime[position]);
-            space.setText(rSpaceAvailability[position]);
-            count.setText(rNoParticipants[position]);
+            title.setText(events.get(position).name);
+            venue.setText(events.get(position).venue);
+            date.setText(events.get(position).date);
+            time.setText(events.get(position).time + " - " + events.get(position).endTime);
+            space.setText(events.get(position).space);
+            count.setText(Double.toString(events.get(position).noParticipants));
 
             return eventNode;
         }
     }
 
-    public void openSpecificEventActivity(String name, String event, String venue, String date,
-                                          String space, String count, String time){
+    public void openSpecificEventActivity(String username, Event e){
         Intent intent = new Intent(this, SpecificEventActivity.class);
-        intent.putExtra("eventTitle", event);
-        intent.putExtra("venueName", venue);
-        intent.putExtra("eventDate", date);
-        intent.putExtra("spaceAvailability", space);
-        intent.putExtra("noParticipants", count);
-        intent.putExtra("eventTime", time);
-        intent.putExtra("username", name);
+        intent.putExtra("eventTitle", e.name);
+        intent.putExtra("venueName", e.venue);
+        intent.putExtra("eventDate", e.date);
+        intent.putExtra("spaceAvailability", e.space);
+        intent.putExtra("noParticipants", Double.toString(e.noParticipants));
+        intent.putExtra("eventTime", e.time + " - " + e.endTime);
+        intent.putExtra("username", username);
         startActivity(intent);
     }
 }
