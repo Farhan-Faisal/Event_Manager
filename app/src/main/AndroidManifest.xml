@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.b07_project">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.B07_project"
+        tools:targetApi="31">
+        <activity
+            android:name=".UserLoginActivity"
+            android:exported="false"
+            android:parentActivityName=".HomePageActivity"/>
+        <activity
+            android:name=".FARHAN_UserScheduleActivity"
+            android:exported="false"
+            android:parentActivityName=".FARHAN_UserVenueListActivity"/>
+        <activity
+            android:name=".UserJoinedEventRV_Dominik"
+            android:exported="false"
+            android:parentActivityName=".FARHAN_UserVenueListActivity" />
+        <activity
+            android:name=".FARHAN_UserVenueListActivity"
+            android:exported="false"
+            android:parentActivityName=".FARHAN_UserHomepageActivity" />
+        <activity
+            android:name=".FARHAN_UserVenueEventListActivity"
+            android:exported="false"
+            android:parentActivityName=".FARHAN_UserVenueListActivity" />
+        <activity
+            android:name=".FARHAN_UserHomepageActivity"
+            android:exported="false"
+            android:parentActivityName=".UserLoginActivity" />
+        <activity
+            android:name=".SpecificEventActivity"
+            android:exported="false"
+            android:parentActivityName=".UserEventListActivity" />
+        <activity
+            android:name=".UserRegisterActivity"
+            android:exported="false"
+            android:parentActivityName=".HomePageActivity" />
+        <activity
+            android:name=".UserEventListActivity"
+            android:exported="false"
+            android:parentActivityName=".FARHAN_UserHomepageActivity" />
+        <activity
+            android:name=".AdminVenueListActivity"
+            android:exported="false"
+            android:parentActivityName=".AdminLoginActivity" />
+        <activity
+            android:name=".AdminLoginActivity"
+            android:exported="false"
+            android:parentActivityName=".HomePageActivity" />
+        <activity
+            android:name=".AVIRAJ_AdminHomepageActivity"
+            android:exported="false"
+            android:parentActivityName=".AdminLoginActivity" />
+        <activity
+            android:name=".AVIRAJ_AdminVenueConfirmationActivity"
+            android:exported="false"
+            android:parentActivityName=".AVIRAJ_AdminVenueCreationActivity"/>
+        <activity
+            android:name=".AVIRAJ_AdminVenueCreationActivity"
+            android:exported="false"
+            android:parentActivityName=".AVIRAJ_AdminHomepageActivity"/>
+        <activity
+            android:name=".HomePageActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

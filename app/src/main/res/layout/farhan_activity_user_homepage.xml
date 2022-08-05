@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FARHAN_UserHomepageActivity">
+
+
+    <Button
+        android:id="@+id/userUpcomingid"
+        android:layout_width="270dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="96dp"
+        android:backgroundTint="#03A9F4"
+        android:text="Upcoming eventModels"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/userScheduleid"
+        android:layout_width="270dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="84dp"
+        android:backgroundTint="#03A9F4"
+        android:text="Schedule an event"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.274" />
+
+    <Button
+        android:id="@+id/userEventsJoinedid"
+        android:layout_width="270dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="176dp"
+        android:backgroundTint="#03A9F4"
+        android:text="Events Joined"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userScheduleid"
+        app:layout_constraintVertical_bias="0.42" />
+
+    <Button
+        android:id="@+id/userEventsScheduledid"
+        android:layout_width="270dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="104dp"
+        android:text="Events Scheduled"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userEventsJoinedid"
+        app:layout_constraintVertical_bias="0.684" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="32dp">
+
+    <LinearLayout
+        android:layout_marginTop="80sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80sp"
+            android:text="Event Title"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:id="@+id/specificEventTitleid"
+            />
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="- Date"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:id="@+id/specificEventDateid"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- Venue Name"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:id="@+id/specificEventVenueid"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- No Participants"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:id="@+id/specificEventCountid"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- Space available"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+
+            android:id="@+id/specificEventSpaceid"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- Time"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:id="@+id/specificEventTimeid"
+            />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Join"
+            android:textSize="20dp"
+            android:layout_weight="0"
+             />
+    </LinearLayout>
+
+</LinearLayout>
