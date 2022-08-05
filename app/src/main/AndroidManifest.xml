@@ -26,6 +26,10 @@
             android:exported="false"
             android:parentActivityName=".FARHAN_UserVenueListActivity" />
         <activity
+            android:name=".UserScheduledEventRV_Dominik"
+            android:exported="false"
+            android:parentActivityName=".FARHAN_UserVenueListActivity" />
+        <activity
             android:name=".FARHAN_UserVenueListActivity"
             android:exported="false"
             android:parentActivityName=".FARHAN_UserHomepageActivity" />

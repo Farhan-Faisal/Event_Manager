@@ -57,6 +57,12 @@ public class FARHAN_UserHomepageActivity extends AppCompatActivity {
                 openUserJoinedEventsActivity(username);
             }
         });
+        yourScheduledEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUserScheduledEventsActivity(username);
+            }
+        });
     }
 
     public void openUserEventListOverview(String name) {
@@ -73,6 +79,12 @@ public class FARHAN_UserHomepageActivity extends AppCompatActivity {
 
     public void openUserJoinedEventsActivity(String name) {
         Intent intent = new Intent(this, UserJoinedEventRV_Dominik.class);
+        intent.putExtra("username", name);
+        startActivity(intent);
+    }
+
+    public void openUserScheduledEventsActivity(String name) {
+        Intent intent = new Intent(this, UserScheduledEventRV_Dominik.class);
         intent.putExtra("username", name);
         startActivity(intent);
     }
