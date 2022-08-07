@@ -51,7 +51,7 @@ public class UserEventListActivity extends AppCompatActivity {
         }
         username = sp.getString("username", null);
 
-        ArrayList<Event> events = new ArrayList<>();
+        ArrayList<eventModel> events = new ArrayList<>();
         ArrayList<String> titles = new ArrayList<>();
 //        ArrayList<String> eventTitleList = new ArrayList<>(0);
 //        ArrayList<String> venueNameList = new ArrayList<>(0);
@@ -93,7 +93,7 @@ public class UserEventListActivity extends AppCompatActivity {
                     for (DataSnapshot event : venue.child("venueEvents").getChildren()) {
 
                         try{
-                            Event e = event.getValue(Event.class);
+                            eventModel e = event.getValue(eventModel.class);
                             events.add(e);
                             titles.add(e.name);
 //                            eventTitleList.add(event.child("name").getValue().toString());
@@ -122,12 +122,12 @@ public class UserEventListActivity extends AppCompatActivity {
 
     class MyAdapter extends ArrayAdapter<String>{
         Context context;
-        ArrayList<Event> events;
+        ArrayList<eventModel> events;
 
-        MyAdapter(Context c, ArrayList<Event> events, ArrayList<String> titles){
+        MyAdapter(Context c, ArrayList<eventModel> events, ArrayList<String> titles){
             super(c, R.layout.event_node, R.id.eventTitleid, titles);
             ArrayList<String> title = new ArrayList<>();
-            for (Event e : events) {
+            for (eventModel e : events) {
                 title.add(e.name);
             }
             this.events = events;
@@ -148,24 +148,24 @@ public class UserEventListActivity extends AppCompatActivity {
 
             // Need to set resources on views
             title.setText(events.get(position).name);
-            venue.setText(events.get(position).venue);
-            date.setText(events.get(position).date);
-            time.setText(events.get(position).time + " - " + events.get(position).endTime);
+            venue.setText("Venue: " + events.get(position).venue);
+            date.setText("Date: " + events.get(position).date);
+            time.setText("Start Time: " + events.get(position).startTime + "  " + "End Time: " + events.get(position).endTime);
             space.setText(events.get(position).space);
-            count.setText(Double.toString(events.get(position).noParticipants));
+            count.setText("No Participants: " + events.get(position).noParticipants);
 
             return eventNode;
         }
     }
 
-    public void openSpecificEventActivity(String username, Event e){
+    public void openSpecificEventActivity(String username, eventModel e){
         Intent intent = new Intent(this, SpecificEventActivity.class);
         intent.putExtra("eventTitle", e.name);
         intent.putExtra("venueName", e.venue);
         intent.putExtra("eventDate", e.date);
         intent.putExtra("spaceAvailability", e.space);
-        intent.putExtra("noParticipants", Double.toString(e.noParticipants));
-        intent.putExtra("eventTime", e.time + " - " + e.endTime);
+        intent.putExtra("noParticipants", e.noParticipants);
+        intent.putExtra("eventTime", e.startTime + " - " + e.endTime);
         intent.putExtra("username", username);
         startActivity(intent);
     }

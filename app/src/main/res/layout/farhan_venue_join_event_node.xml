@@ -24,7 +24,6 @@ joinE
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -37,18 +36,7 @@ joinE
                 android:id="@+id/joinEventVenueid"
                 />
             <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="No Participants"
-                android:textColor="#000"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:id="@+id/joinEventCountid"
-                />
-            <TextView
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:text="Date"
                 android:textColor="#000"
@@ -59,14 +47,23 @@ joinE
                 android:id="@+id/joinEventDateid"
                 />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/joinEventCountid"
                 android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="No Participants"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:text="Space available"
                 android:textColor="#000"
@@ -76,16 +73,32 @@ joinE
                 android:layout_weight="1"
                 android:id="@+id/joinEventSpaceid"
                 />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Time"
+                android:text="Start Time"
                 android:textColor="#000"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:id="@+id/joinEventTimeid"
+                android:id="@+id/joinEventStartTimeid"
+                />
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="End Time"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:id="@+id/joinEventEndTimeid"
                 />
         </LinearLayout>
 

@@ -45,11 +45,12 @@ public class FARHAN_VenueEventAdapter extends RecyclerView.Adapter<FARHAN_VenueE
     public void onBindViewHolder(@NonNull FARHAN_VenueEventAdapter.VJEViewHolder holder, int position) {
         // Assign values to each row depending on the position
         holder.title.setText(eventList.get(position).getName());
-        holder.venue.setText(eventList.get(position).getVenue());
-        holder.date.setText(eventList.get(position).getDate());
-        holder.time.setText(eventList.get(position).getTime());
+        holder.venue.setText("Venue: " + eventList.get(position).getVenue());
+        holder.date.setText("Date: " + eventList.get(position).getDate());
+        holder.startTime.setText("Start Time: " + eventList.get(position).getStartTime());
+        holder.endTime.setText("End Time: " + eventList.get(position).getEndTime());
         holder.space.setText(eventList.get(position).getSpace());
-        holder.no_part.setText(eventList.get(position).getMaxParticipants());
+        holder.no_part.setText("Participants: " + eventList.get(position).getNoParticipants());
     }
 
     @Override
@@ -61,8 +62,13 @@ public class FARHAN_VenueEventAdapter extends RecyclerView.Adapter<FARHAN_VenueE
     public static class VJEViewHolder extends RecyclerView.ViewHolder{
         // Sort of like the onCreate method
         // Assign data from row to certain variables
-        TextView title; TextView venue; TextView date;
-        TextView time; TextView no_part; TextView space;
+        TextView title;
+        TextView venue;
+        TextView date;
+        TextView startTime;
+        TextView endTime;
+        TextView no_part;
+        TextView space;
         Button schedule;
 
         String key;
@@ -73,7 +79,8 @@ public class FARHAN_VenueEventAdapter extends RecyclerView.Adapter<FARHAN_VenueE
             title = itemView.findViewById(R.id.joinEventTitleid);
             venue = itemView.findViewById(R.id.joinEventVenueid);
             date = itemView.findViewById(R.id.joinEventDateid);
-            time = itemView.findViewById(R.id.joinEventTimeid);
+            startTime = itemView.findViewById(R.id.joinEventStartTimeid);
+            endTime = itemView.findViewById(R.id.joinEventEndTimeid);
             no_part = itemView.findViewById(R.id.joinEventCountid);
             space = itemView.findViewById(R.id.joinEventSpaceid);
             schedule = itemView.findViewById(R.id.joinEventButtonid);
@@ -106,9 +113,13 @@ public class FARHAN_VenueEventAdapter extends RecyclerView.Adapter<FARHAN_VenueE
                                         String name = snap.child("name").getValue().toString();
                                         String date = snap.child("date").getValue().toString();
                                         String venue = snap.child("venue").getValue().toString();
-                                        String time = snap.child("time").getValue().toString();
+                                        String startTime = snap.child("startTime").getValue().toString();
+                                        String endTime = snap.child("endTime").getValue().toString();
+                                        String maxParticipants = snap.child("maxParticipants").getValue().toString();
+                                        String noParticipants = snap.child("noParticipants").getValue().toString();
 
-                                        eventModel temp = new eventModel(name, date, venue, String.valueOf(10), time);
+                                        eventModel temp = new eventModel(name, date, venue, maxParticipants,
+                                                noParticipants, startTime, endTime);
                                         if (m.equals(temp) == true) {
                                             added = true;
                                             break;

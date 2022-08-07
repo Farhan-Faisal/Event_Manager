@@ -22,8 +22,9 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
 
     EditText eventName;
     EditText eventDate;
-    EditText eventTime;
-    EditText noParticipants;
+    EditText eventStartTime;
+    EditText eventEndTime;
+    EditText maxParticipants;
     Button schedule;
 
     SharedPreferences sp;
@@ -57,8 +58,9 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
         // Bind the android items
         eventName = findViewById(R.id.user_schedule_event_name);
         eventDate = findViewById(R.id.user_schedule_event_date);
-        eventTime = findViewById(R.id.user_schedule_event_time);
-        noParticipants = findViewById(R.id.user_schedule_event_no_participants);
+        eventStartTime = findViewById(R.id.user_schedule_event_start_time);
+        eventEndTime = findViewById(R.id.user_schedule_event_end_time);
+        maxParticipants = findViewById(R.id.user_schedule_event_no_participants);
         schedule = findViewById(R.id.user_schedule_event_button);
 
 
@@ -68,7 +70,8 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // This is the scheduled event
                 eventModel m = new eventModel(eventName.getText().toString(), eventDate.getText().toString(), venueName,
-                        noParticipants.getText().toString(), eventTime.getText().toString());
+                        maxParticipants.getText().toString(), "0", eventStartTime.getText().toString(),
+                        eventEndTime.getText().toString());
 
                 // Update event in venue node
                 dbref = FirebaseDatabase.getInstance().getReference().child("Venues");

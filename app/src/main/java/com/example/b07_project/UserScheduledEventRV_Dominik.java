@@ -3,6 +3,7 @@ package com.example.b07_project;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -67,9 +68,16 @@ public class UserScheduledEventRV_Dominik extends AppCompatActivity {
                     String eventInformation = shot.child("username").getValue().toString();
                     if (eventInformation.compareTo(username) == 0) {
                         HashMap<String, HashMap<String, String>> temp = (HashMap<String, HashMap<String, String>>) shot.child("userScheduledEvents").getValue();
-                        for (HashMap<String, String> value : temp.values()) {
-                            list.add(new eventModel(value.get("name"), value.get("date"), value.get("venue"),
-                                    String.valueOf(value.get("noParticipants")), value.get("time")));
+                        if (temp == null){
+                            openNoEventScheduledActivity();
+                            break;
+                        }
+                        else {
+                            for (HashMap<String, String> value : temp.values()) {
+                                list.add(new eventModel(value.get("name"), value.get("date"), value.get("venue"),
+                                        value.get("maxParticipants"), value.get("noParticipants"),
+                                        value.get("startTime"), value.get("endTime")));
+                            }
                         }
                     }
                 }
@@ -81,6 +89,11 @@ public class UserScheduledEventRV_Dominik extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+    }
+
+    public void openNoEventScheduledActivity(){
+        Intent intent = new Intent(this, NoEventScheduledActivity.class);
+        startActivity(intent);
     }
 }
 

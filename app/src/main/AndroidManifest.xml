@@ -14,21 +14,29 @@
         android:theme="@style/Theme.B07_project"
         tools:targetApi="31">
         <activity
+            android:name=".NoEventScheduledActivity"
+            android:exported="false"
+            android:parentActivityName=".FARHAN_UserHomepageActivity"/>
+        <activity
+            android:name=".noEventJoinedActivity"
+            android:exported="false"
+            android:parentActivityName=".FARHAN_UserHomepageActivity" />
+        <activity
             android:name=".UserLoginActivity"
             android:exported="false"
-            android:parentActivityName=".HomePageActivity"/>
+            android:parentActivityName=".HomePageActivity" />
         <activity
             android:name=".FARHAN_UserScheduleActivity"
             android:exported="false"
-            android:parentActivityName=".FARHAN_UserVenueListActivity"/>
+            android:parentActivityName=".FARHAN_UserVenueListActivity" />
         <activity
             android:name=".UserJoinedEventRV_Dominik"
             android:exported="false"
-            android:parentActivityName=".FARHAN_UserVenueListActivity" />
+            android:parentActivityName=".FARHAN_UserHomepageActivity" />
         <activity
             android:name=".UserScheduledEventRV_Dominik"
             android:exported="false"
-            android:parentActivityName=".FARHAN_UserVenueListActivity" />
+            android:parentActivityName=".FARHAN_UserHomepageActivity" />
         <activity
             android:name=".FARHAN_UserVenueListActivity"
             android:exported="false"
@@ -68,11 +76,11 @@
         <activity
             android:name=".AVIRAJ_AdminVenueConfirmationActivity"
             android:exported="false"
-            android:parentActivityName=".AVIRAJ_AdminVenueCreationActivity"/>
+            android:parentActivityName=".AVIRAJ_AdminVenueCreationActivity" />
         <activity
             android:name=".AVIRAJ_AdminVenueCreationActivity"
             android:exported="false"
-            android:parentActivityName=".AVIRAJ_AdminHomepageActivity"/>
+            android:parentActivityName=".AVIRAJ_AdminHomepageActivity" />
         <activity
             android:name=".HomePageActivity"
             android:exported="true">
@@ -83,4 +91,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

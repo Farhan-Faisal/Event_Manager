@@ -31,9 +31,10 @@ public class userEventsJoinedAdapter_Dominik extends RecyclerView.Adapter<userEv
     public void onBindViewHolder(@NonNull UserEventsViewholder holder, int position) {
         eventModel user = events.get(position);
         holder.name.setText(user.getName());
-        holder.maxParticipants.setText(String.valueOf(user.getMaxParticipants()));
+        holder.noParticipants.setText(user.getNoParticipants());
         holder.date.setText(user.getDate());
-        holder.time.setText(user.getTime());
+        holder.startTime.setText(user.getStartTime());
+        holder.endTime.setText(user.getStartTime());
         holder.venue.setText(user.getVenue());
         holder.space.setText(user.getSpace());
 
@@ -45,15 +46,16 @@ public class userEventsJoinedAdapter_Dominik extends RecyclerView.Adapter<userEv
     }
 
     public static class UserEventsViewholder extends RecyclerView.ViewHolder {
-        TextView name, maxParticipants, date, time, space, venue;
+        TextView name, noParticipants, date, startTime, endTime, space, venue;
         public UserEventsViewholder(@NonNull View itemView)
         {
             super(itemView);
 
             name = itemView.findViewById(R.id.name);
-            maxParticipants = itemView.findViewById(R.id.maxParticipants);
+            noParticipants = itemView.findViewById(R.id.noParticipants);
             date = itemView.findViewById(R.id.date);
-            time = itemView.findViewById(R.id.time);
+            startTime = itemView.findViewById(R.id.start_time);
+            endTime = itemView.findViewById(R.id.end_time);
             venue = itemView.findViewById(R.id.venue);
             space = itemView.findViewById(R.id.space);
         }

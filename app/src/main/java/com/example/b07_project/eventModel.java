@@ -6,15 +6,36 @@ public class eventModel {
     public String name;
     public String date;
     public String venue;
-    public String time;
+    public String startTime;
+    public String endTime;
     public String maxParticipants;
-    //public String space;
+
+    public String noParticipants;
+    public String space;
 
     private int participantsCount;
-    long noParticipants;
-    boolean spaceAvailable;
 
-    public HashSet<String> participants;
+
+    public eventModel(){}
+
+    public eventModel(String name, String date, String venue, String maxParticipants, String noParticipants, String startTime,
+                      String endTime){
+        this.name = name;
+        this.date = date;
+        this.venue = venue;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.maxParticipants = maxParticipants;
+        this.noParticipants = noParticipants;
+        participantsCount = Integer.valueOf(noParticipants);
+
+        if (participantsCount == Integer.valueOf(maxParticipants)){
+            space = "Event Full";
+        }
+        else{
+            space = "Space Available";
+        }
+    }
 
     public String getName() {
         return name;
@@ -28,79 +49,43 @@ public class eventModel {
         return venue;
     }
 
-    public String getTime() {
-        return time;
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
     }
     public String getSpace() {
-        return "Space Available";
+        return space;
     }
     public String getMaxParticipants() {
-        return String.valueOf(participantsCount);
+        return maxParticipants;
     }
 
-
-    public eventModel(){}
-
-    public eventModel(String name, String date, String venue, String maxParticipants, String time){
-        this.name = name;
-        this.date = date;
-        this.venue = venue;
-        this.time = time;
-        this.maxParticipants = maxParticipants;
-        noParticipants = 0;
-        participantsCount = 0;
-
-//        if (participantsCount == Integer.valueOf(maxParticipants)){
-//            spaceAvailable = false;
-//        }
-//        else{
-//            spaceAvailable = true;
-//        }
+    public String getNoParticipants() {
+        return noParticipants;
     }
-
-//    public void add_participant(String participant){
-//        noParticipants = noParticipants + 1;
-//        participants.add(participant);
-//
-//        if (Integer.valueOf(maxParticipants) == participantsCount){
-//            spaceAvailable = false;
-//        }
-//        else{
-//            spaceAvailable = true;
-//        }
-//        return;
-//    }
-//
-//    public void remove_participant(String participant){
-//        if(participantsCount == 0){
-//            return;
-//        }
-//        if(participants.contains(participant) == false){
-//            return;
-//        }
-//        participantsCount = participantsCount - 1;
-//        participants.remove(participant);
-//        return;
-//    }
 
     @Override
     public boolean equals(Object o){
         boolean result = false;
 
         if (o == null){
-            result =  false;
+            return false;
         }
         else if (o instanceof eventModel == false ){
-            result =  false;
+            return false;
         }
         else {
             eventModel t = (eventModel) o;
             if ((this.name).compareTo(t.name) == 0 && (this.venue).compareTo(t.venue) == 0) {
-                if ((this.date).compareTo(t.date) == 0 && (this.time).compareTo(t.time) == 0) {
-                    result = true;
+                if ((this.date).compareTo(t.date) == 0 && (this.startTime).compareTo(t.startTime) == 0
+                && (this.endTime).compareTo(t.endTime) == 0) {
+                    return true;
                 }
             }
         }
-        return result;
+        return false;
     }
 }

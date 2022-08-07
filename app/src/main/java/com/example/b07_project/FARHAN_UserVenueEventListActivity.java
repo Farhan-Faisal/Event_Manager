@@ -71,7 +71,8 @@ public class FARHAN_UserVenueEventListActivity extends AppCompatActivity {
                         HashMap<String, HashMap<String, String>> temp = (HashMap<String, HashMap<String, String>>) data.child("venueEvents").getValue();
                         for (HashMap<String, String> itr : temp.values()) {
                             list.add(new eventModel(itr.get("name"), itr.get("date"), itr.get("venue"),
-                                    String.valueOf(itr.get("noParticipants")), itr.get("time")));
+                                    itr.get("maxParticipants"), itr.get("noParticipants"),
+                                    itr.get("startTime"), itr.get("endTime")));
                         }
                     }
                 }

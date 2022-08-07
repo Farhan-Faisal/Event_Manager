@@ -9,6 +9,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26870269775390626" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main3.xml" value="0.16942148760330578" />
+        <entry key="app/src/main/res/layout/activity_no_event_joined.xml" value="0.2359375" />
+        <entry key="app/src/main/res/layout/activity_no_event_scheduled.xml" value="0.17864583333333334" />
         <entry key="app/src/main/res/layout/activity_specific_event.xml" value="0.27066650390625" />
         <entry key="app/src/main/res/layout/activity_user_event_list.xml" value="0.47555829476619116" />
         <entry key="app/src/main/res/layout/activity_user_homepage.xml" value="0.1" />
@@ -20,10 +22,12 @@
         <entry key="app/src/main/res/layout/activity_user_venue_list.xml" value="0.2515625" />
         <entry key="app/src/main/res/layout/activity_user_venue_specific_event_list.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/layout/aviraj_activity_admin_venue_creation.xml" value="0.625" />
-        <entry key="app/src/main/res/layout/event_node.xml" value="0.45939465951228486" />
+        <entry key="app/src/main/res/layout/event_node.xml" value="0.25" />
         <entry key="app/src/main/res/layout/event_row_recycler_view.xml" value="0.21740875244140628" />
+        <entry key="app/src/main/res/layout/event_row_recycler_view_dominik.xml" value="0.221875" />
         <entry key="app/src/main/res/layout/farhan_activity_user_homepage.xml" value="0.75" />
         <entry key="app/src/main/res/layout/farhan_activity_user_schedule.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/farhan_venue_join_event_node.xml" value="0.1" />
         <entry key="app/src/main/res/layout/farhan_venue_row_recycler_view.xml" value="0.29194630872483224" />
         <entry key="app/src/main/res/layout/join_event_node.xml" value="0.27070063694267515" />
         <entry key="app/src/main/res/layout/user_joined_event_rv.xml" value="0.2066420664206642" />

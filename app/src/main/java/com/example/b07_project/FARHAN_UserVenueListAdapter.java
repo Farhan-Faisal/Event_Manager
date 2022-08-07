@@ -7,11 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FARHAN_UserVenueListAdapter extends RecyclerView.Adapter<FARHAN_UserVenueListAdapter.UVViewHolder> {
     Context context;
@@ -79,10 +87,37 @@ public class FARHAN_UserVenueListAdapter extends RecyclerView.Adapter<FARHAN_Use
             join.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(itemView.getContext(), FARHAN_UserVenueEventListActivity.class);
-                    intent.putExtra("username", username);
-                    intent.putExtra("venueName", venueList.get(getAdapterPosition()).getVenueName());
-                    view.getContext().startActivity(intent);
+                    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Venues");
+                    dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            // Check if venue node has any events or not
+                            String venueName = venueList.get(getAdapterPosition()).getVenueName();
+                            for (DataSnapshot shot : snapshot.getChildren()) {
+                                String venue = shot.child("venueName").getValue().toString();
+                                if(venue.compareTo(venueName) != 0){
+                                    continue;
+                                }
+                                else {
+                                    HashMap<String, HashMap<String, String>> temp = (HashMap<String, HashMap<String, String>>) shot.child("venueEvents").getValue();
+                                    if (temp == null) {
+                                        Toast.makeText(view.getContext(), "No events at this venue", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        Intent intent = new Intent(itemView.getContext(), FARHAN_UserVenueEventListActivity.class);
+                                        intent.putExtra("username", username);
+                                        intent.putExtra("venueName", venueList.get(getAdapterPosition()).getVenueName());
+                                        view.getContext().startActivity(intent);
+                                    }
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             });
         }

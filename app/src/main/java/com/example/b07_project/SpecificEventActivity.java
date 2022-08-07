@@ -22,11 +22,11 @@ public class SpecificEventActivity extends AppCompatActivity {
         TextView time = findViewById(R.id.specificEventTimeid);
 
         title.setText(intent.getStringExtra("eventTitle"));
-        date.setText(intent.getStringExtra("eventDate"));
-        venue.setText(intent.getStringExtra("venueName"));
-        noPar.setText(intent.getStringExtra("noParticipants"));
-        space.setText(intent.getStringExtra("spaceAvailability"));
-        time.setText(intent.getStringExtra("eventTime"));
+        date.setText("-Date: " + intent.getStringExtra("eventDate"));
+        venue.setText("-Venue: " +  intent.getStringExtra("venueName"));
+        noPar.setText("-No Participants: " + intent.getStringExtra("noParticipants"));
+        space.setText("- " + intent.getStringExtra("spaceAvailability"));
+        time.setText("-Time: " + intent.getStringExtra("eventTime"));
 
     }
 }
