@@ -82,6 +82,10 @@
             android:exported="false"
             android:parentActivityName=".AVIRAJ_AdminHomepageActivity" />
         <activity
+            android:name=".manageVenuesActivity_dominik"
+            android:exported="false"
+            android:parentActivityName=".AVIRAJ_AdminHomepageActivity" />
+        <activity
             android:name=".HomePageActivity"
             android:exported="true">
             <intent-filter>

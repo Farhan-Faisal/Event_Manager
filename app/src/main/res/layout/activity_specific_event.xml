@@ -82,7 +82,7 @@
             android:id="@+id/specificEventTimeid"
             />
         <Button
-            android:id="@+id/button"
+            android:id="@+id/manageVenuesButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Join"
