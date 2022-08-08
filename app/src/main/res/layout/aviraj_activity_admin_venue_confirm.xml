@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".AVIRAJ_AdminVenueConfirmationActivity">
 
     <TextView
@@ -13,6 +14,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="40dp"
         android:text="Name:"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,6 +25,7 @@
         android:layout_height="113dp"
         android:layout_marginTop="24dp"
         android:textSize="25sp"
+        android:textColor="@color/white"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.382"
@@ -36,6 +39,7 @@
         android:layout_height="39dp"
         android:gravity="center"
         android:text="Sports Activities:"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,9 +76,10 @@
         android:id="@+id/EtimeName"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
         android:text="End Time:"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StimeName" />
@@ -83,10 +88,10 @@
         android:id="@+id/StimeText"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toEndOf="@+id/StimeName"
         app:layout_constraintTop_toBottomOf="@+id/DateText" />
 
@@ -94,9 +99,10 @@
         android:id="@+id/StimeName"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
         android:text="Start Time:"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DateName" />
@@ -105,7 +111,8 @@
         android:id="@+id/DateText"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.752"
@@ -117,8 +124,9 @@
         android:layout_width="110dp"
         android:layout_height="40dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="Date:"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/VenueName" />
@@ -129,6 +137,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:textSize="25sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.752"
         app:layout_constraintStart_toEndOf="@+id/VenueName"
@@ -140,6 +149,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
         android:textSize="25sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.764"
         app:layout_constraintStart_toEndOf="@+id/NameName"
@@ -152,6 +162,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="20dp"
         android:text="Venue:"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NameName" />
@@ -165,8 +176,8 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/confirm"
-        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintHorizontal_bias="0.338"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EtimeName"
-        app:layout_constraintVertical_bias="0.329" />
+        app:layout_constraintVertical_bias="0.354" />
 </androidx.constraintlayout.widget.ConstraintLayout>
