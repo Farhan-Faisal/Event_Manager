@@ -128,6 +128,9 @@ public class FARHAN_VenueEventAdapter extends RecyclerView.Adapter<FARHAN_VenueE
 
                                     // Now add the event
                                     if (added == false) {
+                                        // Need to increase participant count of the event
+                                        // increase participant count
+
                                         DataBaseClass dat = new DataBaseClass("user/" + key + "/userEventsJoined");
                                         dat.add(m).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override

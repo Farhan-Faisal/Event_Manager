@@ -1,5 +1,6 @@
 package com.example.b07_project;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class eventModel {
@@ -67,6 +68,33 @@ public class eventModel {
         return noParticipants;
     }
 
+    public void add_participant(){
+        if (noParticipants.compareTo(maxParticipants) == 0){
+            return;
+        }
+        else{
+            participantsCount++;
+            noParticipants = String.valueOf(participantsCount);
+            if (noParticipants.compareTo(maxParticipants) == 0){
+                space = "Event Full";
+            }
+        }
+    }
+
+    public HashMap<String, String> convertToHashMap(){
+        HashMap<String, String> result = new HashMap<>();
+        result.put("name", getName());
+        result.put("date", getDate());
+        result.put("venue", getVenue());
+        result.put("startTime", getStartTime());
+        result.put("endTime", getEndTime());
+        result.put("maxParticipants", getMaxParticipants());
+
+        result.put("noParticipants", getNoParticipants());
+        result.put("space", getSpace());
+        return result;
+    }
+
     @Override
     public boolean equals(Object o){
         boolean result = false;
@@ -81,7 +109,7 @@ public class eventModel {
             eventModel t = (eventModel) o;
             if ((this.name).compareTo(t.name) == 0 && (this.venue).compareTo(t.venue) == 0) {
                 if ((this.date).compareTo(t.date) == 0 && (this.startTime).compareTo(t.startTime) == 0
-                && (this.endTime).compareTo(t.endTime) == 0) {
+                && (this.endTime).compareTo(t.endTime) == 0){
                     return true;
                 }
             }

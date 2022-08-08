@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -142,7 +143,8 @@ public class UserEventListActivity extends AppCompatActivity {
             TextView title = eventNode.findViewById(R.id.eventTitleid);
             TextView venue = eventNode.findViewById(R.id.eventVenueid);
             TextView date = eventNode.findViewById(R.id.eventDateid);
-            TextView time = eventNode.findViewById(R.id.eventTimeid);
+            TextView startTime = eventNode.findViewById(R.id.eventStartTimeid);
+            TextView endTime = eventNode.findViewById(R.id.eventEndTimeid);
             TextView space = eventNode.findViewById(R.id.eventSpaceid);
             TextView count = eventNode.findViewById(R.id.eventCountid);
 
@@ -150,7 +152,8 @@ public class UserEventListActivity extends AppCompatActivity {
             title.setText(events.get(position).name);
             venue.setText("Venue: " + events.get(position).venue);
             date.setText("Date: " + events.get(position).date);
-            time.setText("Start Time: " + events.get(position).startTime + "  " + "End Time: " + events.get(position).endTime);
+            startTime.setText("Start Time: " + events.get(position).startTime);
+            endTime.setText("End Time: " + events.get(position).endTime);
             space.setText(events.get(position).space);
             count.setText("No Participants: " + events.get(position).noParticipants);
 
@@ -160,12 +163,7 @@ public class UserEventListActivity extends AppCompatActivity {
 
     public void openSpecificEventActivity(String username, eventModel e){
         Intent intent = new Intent(this, SpecificEventActivity.class);
-        intent.putExtra("eventTitle", e.name);
-        intent.putExtra("venueName", e.venue);
-        intent.putExtra("eventDate", e.date);
-        intent.putExtra("spaceAvailability", e.space);
-        intent.putExtra("noParticipants", e.noParticipants);
-        intent.putExtra("eventTime", e.startTime + " - " + e.endTime);
+        intent.putExtra("event", e.convertToHashMap());
         intent.putExtra("username", username);
         startActivity(intent);
     }

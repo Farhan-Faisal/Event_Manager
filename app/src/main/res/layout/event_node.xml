@@ -84,13 +84,24 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Time"
+                android:text="Start Time"
                 android:textColor="#000"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:id="@+id/eventTimeid"
+                android:id="@+id/eventStartTimeid"
+                />
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="End Time"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:id="@+id/eventEndTimeid"
                 />
         </LinearLayout>
     </LinearLayout>

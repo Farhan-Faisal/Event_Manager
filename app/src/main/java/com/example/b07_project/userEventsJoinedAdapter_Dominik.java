@@ -1,6 +1,7 @@
 package com.example.b07_project;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,12 @@ import java.util.ArrayList;
 public class userEventsJoinedAdapter_Dominik extends RecyclerView.Adapter<userEventsJoinedAdapter_Dominik.UserEventsViewholder> {
     Context context;
     ArrayList<eventModel> events;
+    ArrayList<eventModel> eventsCopy;
 
     public userEventsJoinedAdapter_Dominik(Context context, ArrayList<eventModel> list) {
         this.context = context;
         this.events = list;
+        this.eventsCopy = new ArrayList<eventModel>(list);
     }
 
     @NonNull
@@ -37,6 +40,24 @@ public class userEventsJoinedAdapter_Dominik extends RecyclerView.Adapter<userEv
         holder.endTime.setText(user.getStartTime());
         holder.venue.setText(user.getVenue());
         holder.space.setText(user.getSpace());
+    }
+
+    public void filter(String filterVenue){
+        ArrayList<eventModel> temp = new ArrayList<eventModel>();
+        temp.addAll(events);
+
+        events.clear();
+        if(filterVenue.length() == 0){
+            events.addAll(eventsCopy);
+        } else {
+            for (int i = 0; i < temp.size(); i++) {
+                Log.d("TAG", temp.get(i).venue);
+                if (temp.get(i).venue.compareTo(filterVenue) == 0) {
+                    events.add(temp.get(i));
+                }
+            }
+        }
+        notifyDataSetChanged();
 
     }
 
