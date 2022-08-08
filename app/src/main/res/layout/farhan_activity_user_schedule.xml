@@ -18,22 +18,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <Button
         android:id="@+id/user_schedule_event_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:ems="10"
         android:hint="Date"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:backgroundTint="@color/white"
         android:inputType="date"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/user_schedule_event_start_time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
+
 
     <EditText
         android:id="@+id/user_schedule_event_name"
@@ -70,16 +68,14 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <Button
         android:id="@+id/user_schedule_event_start_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
+        android:onClick="popTimePicker3"
         android:ems="10"
         android:hint="Start Time"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:backgroundTint="@color/white"
         android:inputType="time"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/user_schedule_event_end_time"
@@ -87,14 +83,12 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <Button
         android:id="@+id/user_schedule_event_end_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:backgroundTint="@color/white"
+        android:onClick="popTimePicker4"
         android:ems="10"
         android:hint="End Time"
         android:inputType="textPersonName"

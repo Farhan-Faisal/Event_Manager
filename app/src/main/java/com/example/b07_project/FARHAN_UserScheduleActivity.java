@@ -3,12 +3,16 @@ package com.example.b07_project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,14 +22,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 public class FARHAN_UserScheduleActivity extends AppCompatActivity {
 
     EditText eventName;
-    EditText eventDate;
-    EditText eventStartTime;
-    EditText eventEndTime;
+    Button eventDate;
+    Button eventStartTime;
+    Button eventEndTime;
     EditText maxParticipants;
     Button schedule;
+
+    int hour,minute;
+    int hour2,minute2;
 
     SharedPreferences sp;
     String venueName;
@@ -57,12 +67,33 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
 
         // Bind the android items
         eventName = findViewById(R.id.user_schedule_event_name);
+
         eventDate = findViewById(R.id.user_schedule_event_date);
         eventStartTime = findViewById(R.id.user_schedule_event_start_time);
         eventEndTime = findViewById(R.id.user_schedule_event_end_time);
         maxParticipants = findViewById(R.id.user_schedule_event_no_participants);
         schedule = findViewById(R.id.user_schedule_event_button);
 
+        Calendar calendar = Calendar.getInstance();
+        final int year  = calendar.get(Calendar.YEAR);
+        final int month  = calendar.get(Calendar.MONTH);
+        final int day  = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+        eventDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(FARHAN_UserScheduleActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month = month + 1;
+                        String date = day+"/"+month+"/"+year;
+                        eventDate.setText(date);
+                    }
+                },year,month,day);
+                datePickerDialog.show();
+            }
+        });
 
         // Need to add the event to the user and venue node in Firebase
         schedule.setOnClickListener(new View.OnClickListener() {
@@ -127,5 +158,40 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+    public void popTimePicker3(View view) {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
+        {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
+            {
+                hour = selectedHour;
+                minute = selectedMinute;
+                eventStartTime.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
+            }
+        };
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,onTimeSetListener, hour, minute, true);
+
+        timePickerDialog.setTitle("Select Time");
+        timePickerDialog.show();
+    }
+
+    public void popTimePicker4 (View view) {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
+        {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
+            {
+                hour2 = selectedHour;
+                minute2 = selectedMinute;
+                eventEndTime.setText(String.format(Locale.getDefault(), "%02d:%02d",hour2, minute2));
+            }
+        };
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,onTimeSetListener, hour2, minute2, true);
+
+        timePickerDialog.setTitle("Select Time");
+        timePickerDialog.show();
     }
 }
