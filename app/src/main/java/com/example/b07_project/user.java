@@ -6,13 +6,15 @@ import java.util.HashMap;
 public class user {
     public String username;
     public String password;
+    public String email;
     public HashMap<String, eventModel> eventsJoined;
 
     public user(){}
 
-    public user(String name, String code){
+    public user(String name, String code, String email){
         this.username = name;
         this.password = code;
+        this.email = email;
         eventsJoined = new HashMap<String, eventModel>();
     }
 

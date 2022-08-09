@@ -22,12 +22,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class SpecificEventActivity extends AppCompatActivity {
+public class JASON_SpecificEventActivity extends AppCompatActivity {
 
     SharedPreferences sp;
     String username;
-    String userKey;
+    String email;
+
     String venueKey;
+    eventModel specificEvent;
     boolean added;
 
     @Override
@@ -42,11 +44,13 @@ public class SpecificEventActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("username", getIntent().getStringExtra("username"));
             editor.putString("venueName", getIntent().getStringExtra("venueName"));
+            editor.putString("email", getIntent().getStringExtra("email"));
             editor.commit();
         }
 
         // Retrieve data from shared preference into appropriate variables
         username = sp.getString("username", null);
+        email = sp.getString("email", null);
 
         // Bind the android features to ids
         TextView title = findViewById(R.id.specificEventTitleid);
@@ -60,7 +64,7 @@ public class SpecificEventActivity extends AppCompatActivity {
 
         // Retrieve the intent
         HashMap<String, String> input = (HashMap<String, String>) getIntent().getSerializableExtra("event");
-        eventModel specificEvent = new eventModel(input.get("name"),
+        specificEvent = new eventModel(input.get("name"),
                 input.get("date"), input.get("venue"), input.get("maxParticipants"),
                 input.get("noParticipants"), input.get("startTime"), input.get("endTime"));
 
@@ -80,63 +84,49 @@ public class SpecificEventActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Event Full!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("user");
-                    dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    // Check if the event is already in the user node
+                    // To do this, iterate through the user's events
+                    DataBaseClass checker = new DataBaseClass("user/" + String.valueOf(email.hashCode()) + "/userEventsJoined");
+                    checker.dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            // Got the user node key
+                            added = false;
                             for (DataSnapshot snap : snapshot.getChildren()) {
-                                String n = snap.child("username").getValue().toString();
-                                if (n.compareTo(username) == 0) {
-                                    userKey = snap.getKey();
+                                eventModel temp = snap.getValue(eventModel.class);
+                                if (specificEvent.equals(temp) == true) {
+                                    added = true;
+                                    break;
                                 }
                             }
 
+                            // Now add the event
+                            if (added == false) {
+                                // Need to increase participant count of the event in venue node
+                                updateParticipantCountInVenues(specificEvent);
+                                updateParticipantCountInAllUsers(specificEvent);
 
-                            // Check if the event is already in the user node
-                            // To do this, iterate through the user's events
-                            DataBaseClass checker = new DataBaseClass("user/" + userKey + "/userEventsJoined");
-                            checker.dbref.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    added = false;
-                                    for (DataSnapshot snap : snapshot.getChildren()) {
-                                        eventModel temp = snap.getValue(eventModel.class);
-                                        if (specificEvent.equals(temp) == true) {
-                                            added = true;
-                                            break;
-                                        }
+                                // specificEvent.add_participant();
+
+                                // Add event in userEventsJoined node
+                                DataBaseClass dat = new DataBaseClass("user/" + email.hashCode() + "/userEventsJoined");
+                                dat.add(specificEvent).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Log.d("CREATION4", specificEvent.getNoParticipants());
+                                        Toast.makeText(view.getContext(), "Event joined successfully", Toast.LENGTH_SHORT).show();
                                     }
+                                });
 
-                                    // Now add the event
-                                    if (added == false) {
-                                        // Need to increase participant count of the event in venue node
-                                        updateParticipantCountInVenues(specificEvent);
-                                        updateParticipantCountInAllUsers(specificEvent);
-
-                                        specificEvent.add_participant();
-                                        // Add event in userEventsJoined node
-                                        DataBaseClass dat = new DataBaseClass("user/" + userKey + "/userEventsJoined");
-                                        dat.add(specificEvent).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                Toast.makeText(view.getContext(), "Event joined successfully", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-
-                                    } else {
-                                        Toast.makeText(view.getContext(), "Event already joined", Toast.LENGTH_LONG).show();
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {}
-                            });
+                            } else {
+                                Toast.makeText(view.getContext(), "Event already joined", Toast.LENGTH_LONG).show();
+                            }
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {}
                     });
+
                 }
             }
         });

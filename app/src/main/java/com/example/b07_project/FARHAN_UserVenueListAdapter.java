@@ -25,11 +25,13 @@ public class FARHAN_UserVenueListAdapter extends RecyclerView.Adapter<FARHAN_Use
     Context context;
     ArrayList<Venue> venueList = new ArrayList<>();
     String username;
+    String email;
 
-    public FARHAN_UserVenueListAdapter(Context context, ArrayList<Venue> venueList, String username) {
+    public FARHAN_UserVenueListAdapter(Context context, ArrayList<Venue> venueList, String username, String email) {
         this.context = context;
         this.venueList = venueList;
         this.username = username;
+        this.email = email;
     }
 
     @NonNull
@@ -39,7 +41,7 @@ public class FARHAN_UserVenueListAdapter extends RecyclerView.Adapter<FARHAN_Use
         // This is how we give look to our rows
         LayoutInflater inflator = LayoutInflater.from(context);
         View view = inflator.inflate(R.layout.farhan_venue_row_recycler_view, parent, false);
-        return new FARHAN_UserVenueListAdapter.UVViewHolder(view, username, venueList);
+        return new FARHAN_UserVenueListAdapter.UVViewHolder(view, username, venueList, email);
     }
 
     @Override
@@ -65,8 +67,16 @@ public class FARHAN_UserVenueListAdapter extends RecyclerView.Adapter<FARHAN_Use
         Button schedule;
         Button join;
 
-        public UVViewHolder(@NonNull View itemView, String username, ArrayList<Venue> venueList) {
+        String Username;
+        String Email;
+
+        public UVViewHolder(@NonNull View itemView, String username, ArrayList<Venue> venueList, String email) {
             super(itemView);
+
+            this.Username = username;
+            this.Email = email;
+
+            // Bind views
             title = itemView.findViewById(R.id.venueNodeTitleid);
             location = itemView.findViewById(R.id.venueNodeLocationid);
             schedule = itemView.findViewById(R.id.venueNodeScheduleButtonid);
@@ -80,6 +90,7 @@ public class FARHAN_UserVenueListAdapter extends RecyclerView.Adapter<FARHAN_Use
                     Intent intent = new Intent(itemView.getContext(), FARHAN_UserScheduleActivity.class);
                     intent.putExtra("username", username);
                     intent.putExtra("venueName", venueList.get(getAdapterPosition()).getVenueName());
+                    intent.putExtra("venueSports", venueList.get(getAdapterPosition()).getSports());
                     view.getContext().startActivity(intent);
                 }
             });
@@ -105,8 +116,10 @@ public class FARHAN_UserVenueListAdapter extends RecyclerView.Adapter<FARHAN_Use
                                     }
                                     else {
                                         Intent intent = new Intent(itemView.getContext(), FARHAN_UserVenueEventListActivity.class);
-                                        intent.putExtra("username", username);
+                                        intent.putExtra("username", Username);
                                         intent.putExtra("venueName", venueList.get(getAdapterPosition()).getVenueName());
+                                        intent.putExtra("venueSports", venueList.get(getAdapterPosition()).getSports());
+                                        intent.putExtra("email", Email);
                                         view.getContext().startActivity(intent);
                                     }
                                 }

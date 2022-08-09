@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Venue {
-    public String date;
-    public String end_time;
+    public String close_time;
     public String location;
-    public String start_time;
+    public String open_time;
     public String venueName;
     public String sports;
 
@@ -23,20 +22,20 @@ public class Venue {
         this.venueName = venueName;
     }
 
-    public String getDate() {
-        return date;
-    }
+//    public String getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(String date) {
+//        this.date = date;
+//    }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getEnd_time() {
-        return end_time;
+    public String getClose_time() {
+        return close_time;
     }
 
     public void setEnd_time(String end_time) {
-        this.end_time = end_time;
+        this.close_time = end_time;
     }
 
     public String getLocation() {
@@ -48,21 +47,20 @@ public class Venue {
     }
 
     public String getStart_time() {
-        return start_time;
+        return open_time;
     }
 
     public void setStart_time(String start_time) {
-        this.start_time = start_time;
+        this.open_time = start_time;
     }
 
     public Venue(){
     }
-    public Venue(String venue, String date, String end_time, String location, String start_time, String sports){
+    public Venue(String venue, String end_time, String location, String start_time, String sports){
         this.venueName = venue;
-        this.date = date;
-        this.end_time = end_time;
+        this.close_time = end_time;
         this.location = location;
-        this.start_time = start_time;
+        this.open_time = start_time;
         this.sports = sports;
     }
 }

@@ -22,11 +22,12 @@ public class FARHAN_UserVenueListActivity extends AppCompatActivity {
 
     // Declare shared preference
     SharedPreferences sp;
+    String username;
+    String email;
 
     // Declare variable to save intent/preferences
     // ArrayList<venue> venues = new ArrayList<venue>();
     ArrayList<Venue> venueModels = new ArrayList<>();
-    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +41,18 @@ public class FARHAN_UserVenueListActivity extends AppCompatActivity {
         if(getIntent().hasExtra("username")){
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("username", getIntent().getStringExtra("username"));
+            editor.putString("email", getIntent().getStringExtra("email"));
             editor.commit();
         }
 
         // Retrieve data from shared preference into appropriate variables
         username = sp.getString("username", null);
+        email = sp.getString("email", null);
+
+        // Bind views and adapters
         recyclerView = findViewById(R.id.user_venue_list_rv_id);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        FARHAN_UserVenueListAdapter adapter = new FARHAN_UserVenueListAdapter(this,  venueModels, username);
+        FARHAN_UserVenueListAdapter adapter = new FARHAN_UserVenueListAdapter(this,  venueModels, username, email);
         recyclerView.setAdapter(adapter);
 
         // Get all venues from the database
@@ -60,10 +65,8 @@ public class FARHAN_UserVenueListActivity extends AppCompatActivity {
                     String loc = snap.child("location").getValue().toString();
                     String ST = snap.child("Start Time").getValue().toString();
                     String ET = snap.child("End Time").getValue().toString();
-                    String date = snap.child("Date").getValue().toString();
                     String sports = snap.child("Sports").getValue().toString();
-
-                    venueModels.add(new Venue(name, date, ET, loc, ST, sports));
+                    venueModels.add(new Venue(name, ET, loc, ST, sports));
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -72,6 +75,4 @@ public class FARHAN_UserVenueListActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
-
-
 }

@@ -22,20 +22,21 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UserScheduledEventRV_Dominik extends AppCompatActivity {
+public class DOMINIK_UserScheduledEventRV extends AppCompatActivity {
     RecyclerView recyclerView;
     //DatabaseReference databaseReferenceEventsJoined;
     DatabaseReference databaseReferenceEventsScheduled;
-    userEventsJoinedAdapter_Dominik userEventsAdapter;
+    DOMINIK_userEventsJoinedAdapter userEventsAdapter;
     ArrayList<eventModel> list;
     SharedPreferences sharedPreferences;
-    String username;
 
+    String username;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_scheduled_event_rv_dominik);
+        setContentView(R.layout.dominik_user_scheduled_event_rv);
 
         sharedPreferences = getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
 
@@ -43,45 +44,40 @@ public class UserScheduledEventRV_Dominik extends AppCompatActivity {
         if (getIntent().hasExtra("username")) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("username", getIntent().getStringExtra("username"));
+            editor.putString("email", getIntent().getStringExtra("email"));
             editor.commit();
         }
         username = sharedPreferences.getString("username", null);
+        email = sharedPreferences.getString("email", null);
         //Log.d("CREATION", username);
 
         recyclerView = findViewById(R.id.userScheduledEventRVid);
         //NEED TO CREATE INTENT SO THAT I CAN GET THE USER WHICH IS LOGGED IN AND DO
         // USER + / + events
-        databaseReferenceEventsScheduled = FirebaseDatabase.getInstance().getReference().child("user");
-        //databaseReferenceEventsJoined = FirebaseDatabase.getInstance().getReference(username + "/" + "userScheduledEvents");
-        //recyclerView.setHasFixedSize(true);
+        databaseReferenceEventsScheduled = FirebaseDatabase.getInstance().getReference().child("user/" +
+                String.valueOf(email.hashCode()) + "/userScheduledEvents");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<eventModel>();
-        userEventsAdapter = new userEventsJoinedAdapter_Dominik(this, list);
+        userEventsAdapter = new DOMINIK_userEventsJoinedAdapter(this, list);
         recyclerView.setAdapter(userEventsAdapter);
 
         databaseReferenceEventsScheduled.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot shot : snapshot.getChildren()) {
-                    String eventInformation = shot.child("username").getValue().toString();
-                    if (eventInformation.compareTo(username) == 0) {
-                        HashMap<String, HashMap<String, String>> temp = (HashMap<String, HashMap<String, String>>) shot.child("userScheduledEvents").getValue();
-                        if (temp == null){
-                            openNoEventScheduledActivity();
-                            break;
-                        }
-                        else {
-                            for (HashMap<String, String> value : temp.values()) {
-                                list.add(new eventModel(value.get("name"), value.get("date"), value.get("venue"),
-                                        value.get("maxParticipants"), value.get("noParticipants"),
-                                        value.get("startTime"), value.get("endTime")));
-                            }
-                        }
-                    }
+                HashMap<String, HashMap<String, String>> temp = (HashMap<String, HashMap<String, String>>) snapshot.getValue();
+                if (temp == null){
+                    openNoEventScheduledActivity();
                 }
-                userEventsAdapter.notifyDataSetChanged();
+                else {
+                    for (HashMap<String, String> value : temp.values()) {
+                        list.add(new eventModel(value.get("name"), value.get("date"), value.get("venue"),
+                                value.get("maxParticipants"), value.get("noParticipants"),
+                                value.get("startTime"), value.get("endTime")));
+                    }
+                    userEventsAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -92,7 +88,7 @@ public class UserScheduledEventRV_Dominik extends AppCompatActivity {
     }
 
     public void openNoEventScheduledActivity(){
-        Intent intent = new Intent(this, NoEventScheduledActivity.class);
+        Intent intent = new Intent(this, noEventScheduledActivity.class);
         startActivity(intent);
     }
 }

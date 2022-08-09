@@ -14,19 +14,23 @@
         android:theme="@style/Theme.B07_project"
         tools:targetApi="31">
         <activity
+            android:name=".noUpcomingEventsActivity"
+            android:exported="false"
+            android:parentActivityName=".FARHAN_UserHomepageActivity" />
+        <activity
             android:name=".manageVenuesActivity_dominik"
             android:exported="false"
             android:parentActivityName=".AVIRAJ_AdminHomepageActivity" />
         <activity
-            android:name=".NoEventScheduledActivity"
+            android:name=".noEventScheduledActivity"
             android:exported="false"
-            android:parentActivityName=".FARHAN_UserHomepageActivity"/>
+            android:parentActivityName=".FARHAN_UserHomepageActivity" />
         <activity
             android:name=".noEventJoinedActivity"
             android:exported="false"
             android:parentActivityName=".FARHAN_UserHomepageActivity" />
         <activity
-            android:name=".UserLoginActivity"
+            android:name=".AVIRAJ_UserLoginActivity"
             android:exported="false"
             android:parentActivityName=".HomePageActivity" />
         <activity
@@ -34,11 +38,11 @@
             android:exported="false"
             android:parentActivityName=".FARHAN_UserVenueListActivity" />
         <activity
-            android:name=".UserJoinedEventRV_Dominik"
+            android:name=".DOMINIK_userJoinedEventRV"
             android:exported="false"
             android:parentActivityName=".FARHAN_UserHomepageActivity" />
         <activity
-            android:name=".UserScheduledEventRV_Dominik"
+            android:name=".DOMINIK_UserScheduledEventRV"
             android:exported="false"
             android:parentActivityName=".FARHAN_UserHomepageActivity" />
         <activity
@@ -52,17 +56,17 @@
         <activity
             android:name=".FARHAN_UserHomepageActivity"
             android:exported="false"
-            android:parentActivityName=".UserLoginActivity" />
+            android:parentActivityName=".AVIRAJ_UserLoginActivity" />
         <activity
-            android:name=".SpecificEventActivity"
+            android:name=".JASON_SpecificEventActivity"
             android:exported="false"
-            android:parentActivityName=".UserEventListActivity" />
+            android:parentActivityName=".JASON_UserEventListActivity" />
         <activity
-            android:name=".UserRegisterActivity"
+            android:name=".AVIRAJ_UserRegisterActivity"
             android:exported="false"
             android:parentActivityName=".HomePageActivity" />
         <activity
-            android:name=".UserEventListActivity"
+            android:name=".JASON_UserEventListActivity"
             android:exported="false"
             android:parentActivityName=".FARHAN_UserHomepageActivity" />
         <activity

@@ -6,13 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class HomePageActivity extends AppCompatActivity {
     Button userPage;
@@ -51,7 +44,7 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     public void openUserLogin(){
-        Intent intent = new Intent(this, UserLoginActivity.class);
+        Intent intent = new Intent(this, AVIRAJ_UserLoginActivity.class);
         startActivity(intent);
     }
     public void openAdminLogin(){

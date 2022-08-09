@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -16,7 +17,6 @@ import java.util.HashMap;
 public class AVIRAJ_AdminVenueConfirmationActivity extends AppCompatActivity {
     TextView location;
     TextView NameText;
-    TextView EventDate;
     TextView Stattime;
     TextView Endtime;
     TextView Sports;
@@ -31,7 +31,6 @@ public class AVIRAJ_AdminVenueConfirmationActivity extends AppCompatActivity {
 
         NameText = findViewById(R.id.NameText);
         location = findViewById(R.id.VenueText);
-        EventDate = findViewById(R.id.DateText);
         Stattime = findViewById(R.id.StimeText);
         Endtime = findViewById(R.id.EtimeText);
         Sports = findViewById(R.id.SportsText);
@@ -40,7 +39,6 @@ public class AVIRAJ_AdminVenueConfirmationActivity extends AppCompatActivity {
 
         NameText.setText(intent.getStringExtra("venueName"));
         location.setText(intent.getStringExtra("location"));
-        EventDate.setText(intent.getStringExtra("Date"));
         Stattime.setText(intent.getStringExtra("Start Time"));
         Endtime.setText(intent.getStringExtra("End Time"));
         Sports.setText(intent.getStringExtra("Sports"));
@@ -60,7 +58,6 @@ public class AVIRAJ_AdminVenueConfirmationActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String Name = NameText.getText().toString();
                 String Location = location.getText().toString();
-                String Date = EventDate.getText().toString();
                 String Start_Time = Stattime.getText().toString();
                 String End_Time = Endtime.getText().toString();
                 String Sports_Selected = Sports.getText().toString();
@@ -69,12 +66,12 @@ public class AVIRAJ_AdminVenueConfirmationActivity extends AppCompatActivity {
 
                 Venues.put("venueName",Name);
                 Venues.put("location",Location);
-                Venues.put("Date",Date);
                 Venues.put("Start Time",Start_Time);
                 Venues.put("End Time",End_Time);
                 Venues.put("Sports",Sports_Selected);
 
                 root.push().setValue(Venues);
+                Toast.makeText(getApplicationContext(), "Venue created successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -30,7 +30,7 @@ public class AdminLoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_login);
+        setContentView(R.layout.aviraj_activity_admin_login);
 
         name = findViewById(R.id.admin_name_id);
         password = findViewById(R.id.admin_password_id);

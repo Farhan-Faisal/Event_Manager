@@ -4,10 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserEventListActivity">
+    tools:context=".JASON_UserEventListActivity">
 
     <ListView
         android:id="@+id/user_event_list_id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="40dp">
+    </ListView>
+    <TextView
+        android:id="@+id/userEventListEmptyPromptId"
+        android:layout_width="236dp"
+        android:layout_height="49dp"
+        android:text=""
+        android:textStyle="bold"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

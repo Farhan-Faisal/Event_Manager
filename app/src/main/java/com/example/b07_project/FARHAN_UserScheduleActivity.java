@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.common.util.ArrayUtils;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class FARHAN_UserScheduleActivity extends AppCompatActivity {
@@ -42,11 +45,14 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
 
     Button schedule;
 
-    String[] SportsArray = {"BasketBall","Football","Soccer","Cricket","Baseball","Hockey","Tennis","Volleyball","Table Tennis","Rugby"};
-    String[] SportsTypeParticipant = {"12","22","22","22","18","12","2","6","2","30"};
+    HashMap<String, String> SportParticipant = new HashMap<String, String>();
+
+    String[] SportsArray;
+
     SharedPreferences sp;
     String venueName;
     String username;
+    String venueSports;
 
     DatabaseReference dbref;
     DatabaseReference dbref2;
@@ -68,11 +74,25 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("username", getIntent().getStringExtra("username"));
             editor.putString("venueName", getIntent().getStringExtra("venueName"));
+            editor.putString("venueSports", getIntent().getStringExtra("venueSports"));
             editor.commit();
         }
         username = sp.getString("username", null);
         venueName = sp.getString("venueName", null);
+        venueSports = sp.getString("venueSports", null);
+        Log.d("SPORTS", venueSports);
+        SportsArray = venueSports.split("\\,");
 
+        SportParticipant.put("BasketBall", "12");
+        SportParticipant.put("Football", "22");
+        SportParticipant.put("Soccer", "22");
+        SportParticipant.put("Cricket", "20");
+        SportParticipant.put("Baseball", "18");
+        SportParticipant.put("Hockey", "12");
+        SportParticipant.put("Tennis", "2");
+        SportParticipant.put("Volleyball", "6");
+        SportParticipant.put("Table Tennis", "2");
+        SportParticipant.put("Rugby", "30");
 
         // Bind android items
         eventName = findViewById(R.id.user_schedule_event_name);
@@ -93,7 +113,7 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         eventName.setText(SportsArray[i]);
-                        maxParticipants.setText(SportsTypeParticipant[i]);
+                        maxParticipants.setText(SportParticipant.get(SportsArray[i].trim()));
                         dialogInterface.dismiss();
                     }
                 });

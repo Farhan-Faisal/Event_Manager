@@ -110,7 +110,6 @@ public class AVIRAJ_AdminVenueCreationActivity extends AppCompatActivity {
 
         Venue = findViewById(R.id.Venue);
         Name = findViewById(R.id.Name);
-        EventDate = findViewById(R.id.editTextDate);
         Stattime = findViewById(R.id.Stime);
         Endtime = findViewById(R.id.Etime);
 
@@ -120,20 +119,20 @@ public class AVIRAJ_AdminVenueCreationActivity extends AppCompatActivity {
         final int day  = calendar.get(Calendar.DAY_OF_MONTH);
 
 
-        EventDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(AVIRAJ_AdminVenueCreationActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        month = month + 1;
-                        String date = day+"/"+month+"/"+year;
-                        EventDate.setText(date);
-                    }
-                },year,month,day);
-                datePickerDialog.show();
-            }
-        });
+//        EventDate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                DatePickerDialog datePickerDialog = new DatePickerDialog(AVIRAJ_AdminVenueCreationActivity.this, new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker view, int year, int month, int day) {
+//                        month = month + 1;
+//                        String date = day+"/"+month+"/"+year;
+//                        EventDate.setText(date);
+//                    }
+//                },year,month,day);
+//                datePickerDialog.show();
+//            }
+//        });
     }
 
     public void popTimePicker(View view) {
@@ -176,7 +175,6 @@ public class AVIRAJ_AdminVenueCreationActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AVIRAJ_AdminVenueConfirmationActivity.class);
         intent.putExtra("venueName", Name.getText().toString());
         intent.putExtra("location", Venue.getText().toString());
-        intent.putExtra("Date", EventDate.getText().toString());
         intent.putExtra("Start Time", Stattime.getText().toString());
         intent.putExtra("End Time", Endtime.getText().toString());
         intent.putExtra("Sports", stringBuilder.toString());

@@ -30,12 +30,23 @@ public class eventModel {
         this.noParticipants = noParticipants;
         participantsCount = Integer.valueOf(noParticipants);
 
-        if (participantsCount == Integer.valueOf(maxParticipants)){
+        if (noParticipants.compareTo(maxParticipants) == 0){
             space = "Event Full";
         }
         else{
             space = "Space Available";
         }
+    }
+    public eventModel(eventModel input){
+        this.name = input.name;
+        this.date = input.date;
+        this.venue = input.venue;
+        this.startTime = input.startTime;
+        this.endTime = input.endTime;
+        this.maxParticipants = input.maxParticipants;
+        this.noParticipants = input.noParticipants;
+        participantsCount = input.participantsCount;
+        this.space = input.space;
     }
 
     public String getName() {
@@ -73,11 +84,13 @@ public class eventModel {
             return;
         }
         else{
-            participantsCount++;
-            noParticipants = String.valueOf(participantsCount);
+            int n = Integer.valueOf(noParticipants);
+            n = n + 1;
+            noParticipants = String.valueOf(n);
             if (noParticipants.compareTo(maxParticipants) == 0){
                 space = "Event Full";
             }
+            return;
         }
     }
 

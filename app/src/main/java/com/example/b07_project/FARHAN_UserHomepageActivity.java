@@ -8,14 +8,18 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class FARHAN_UserHomepageActivity extends AppCompatActivity {
+    TextView prompt;
     Button upcomingEvents;
     Button scheduleEvent;
     Button yourJoinedEvents;
     Button yourScheduledEvents;
+
     SharedPreferences sp;
     String username;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,64 +32,73 @@ public class FARHAN_UserHomepageActivity extends AppCompatActivity {
         if(getIntent().hasExtra("username")){
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("username", getIntent().getStringExtra("username"));
+            editor.putString("email", getIntent().getStringExtra("email"));
             editor.commit();
         }
         username = sp.getString("username", null);
+        email = sp.getString("email", null);
 
         // Initialize the variables
         upcomingEvents = findViewById(R.id.userUpcomingid);
         scheduleEvent = findViewById(R.id.userScheduleid);
         yourJoinedEvents = findViewById(R.id.userEventsJoinedid);
         yourScheduledEvents = findViewById(R.id.userEventsScheduledid);
+        prompt = findViewById(R.id.userHomepagePromptID);
+
+        prompt.setText("Welcome " + username +"!");
 
         upcomingEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openUserEventListOverview(username);
+                openUserEventListOverview(username, email);
             }
         });
 
         scheduleEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openUserVenueListActivity(username);
+                openUserVenueListActivity(username, email);
             }
         });
         yourJoinedEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openUserJoinedEventsActivity(username);
+                openUserJoinedEventsActivity(username, email);
             }
         });
         yourScheduledEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openUserScheduledEventsActivity(username);
+                openUserScheduledEventsActivity(username, email);
             }
         });
     }
 
-    public void openUserEventListOverview(String name) {
-        Intent intent = new Intent(this, UserEventListActivity.class);
+    public void openUserEventListOverview(String name, String email) {
+        Intent intent = new Intent(this, JASON_UserEventListActivity.class);
         intent.putExtra("username", name);
+        intent.putExtra("email", email);
         startActivity(intent);
     }
 
-    public void openUserVenueListActivity(String name) {
+    public void openUserVenueListActivity(String name, String email) {
         Intent intent = new Intent(this, FARHAN_UserVenueListActivity.class);
         intent.putExtra("username", name);
+        intent.putExtra("email", email);
         startActivity(intent);
     }
 
-    public void openUserJoinedEventsActivity(String name) {
-        Intent intent = new Intent(this, UserJoinedEventRV_Dominik.class);
+    public void openUserJoinedEventsActivity(String name, String email) {
+        Intent intent = new Intent(this, DOMINIK_userJoinedEventRV.class);
         intent.putExtra("username", name);
+        intent.putExtra("email", email);
         startActivity(intent);
     }
 
-    public void openUserScheduledEventsActivity(String name) {
-        Intent intent = new Intent(this, UserScheduledEventRV_Dominik.class);
+    public void openUserScheduledEventsActivity(String name, String email) {
+        Intent intent = new Intent(this, DOMINIK_UserScheduledEventRV.class);
         intent.putExtra("username", name);
+        intent.putExtra("email", email);
         startActivity(intent);
     }
 }

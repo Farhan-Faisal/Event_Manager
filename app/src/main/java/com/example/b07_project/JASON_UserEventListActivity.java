@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,14 +25,16 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class UserEventListActivity extends AppCompatActivity {
+public class JASON_UserEventListActivity extends AppCompatActivity {
 
     ListView listView;
-    String username;
+    TextView emptyListPrompt;
 
     DatabaseReference dbref;
+
     SharedPreferences sp;
-    String key;
+    String username;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,40 +48,29 @@ public class UserEventListActivity extends AppCompatActivity {
         if(getIntent().hasExtra("username")){
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("username", getIntent().getStringExtra("username"));
+            editor.putString("email", getIntent().getStringExtra("email"));
             editor.commit();
         }
         username = sp.getString("username", null);
+        email = sp.getString("email", null);
 
         ArrayList<eventModel> events = new ArrayList<>();
         ArrayList<String> titles = new ArrayList<>();
-//        ArrayList<String> eventTitleList = new ArrayList<>(0);
-//        ArrayList<String> venueNameList = new ArrayList<>(0);
-//        ArrayList<String> eventDateList = new ArrayList<>(0);
-//        ArrayList<String> spaceAvailabilityList = new ArrayList<>(0);
-//        ArrayList<String> noParticipantsList = new ArrayList<>(0);
-//        ArrayList<String> eventTimeList = new ArrayList<>(0);
 
-//        String [] eventTitle = eventTitleList.toArray(new String[0]);
-//        String [] venueName = venueNameList.toArray(new String[0]);
-//        String [] eventDate = eventDateList.toArray(new String[0]);
-//        String [] spaceAvailability = spaceAvailabilityList.toArray(new String[0]);
-//        String [] noParticipants = noParticipantsList.toArray(new String[0]);
-//        String [] eventTime = eventTimeList.toArray(new String[0]);
 
+        // Bind the views
+        emptyListPrompt = findViewById(R.id.userEventListEmptyPromptId);
         listView = findViewById(R.id.user_event_list_id);
 
         // Need to make out own adapter class
         MyAdapter adapter = new MyAdapter(this, events, titles);
-//        MyAdapter adapter = new MyAdapter(this, eventTitleList, venueNameList, eventDateList,
-//                spaceAvailabilityList, noParticipantsList, eventTimeList);
-        //ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.event_node, R.id.eventTitleid, eventTitleList);
         listView.setAdapter(adapter);
 
         // Now, just need to create item click on list view
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                openSpecificEventActivity(username, events.get(position));
+                openSpecificEventActivity(username, events.get(position), email);
             }
         });
 
@@ -92,23 +81,20 @@ public class UserEventListActivity extends AppCompatActivity {
                 titles.clear();
                 for (DataSnapshot venue: snapshot.getChildren()) {
                     for (DataSnapshot event : venue.child("venueEvents").getChildren()) {
-
                         try{
                             eventModel e = event.getValue(eventModel.class);
                             events.add(e);
                             titles.add(e.name);
-//                            eventTitleList.add(event.child("name").getValue().toString());
-//                            venueNameList.add(event.child("venue").getValue().toString());
-//                            eventDateList.add(event.child("date").getValue().toString());
-//                            spaceAvailabilityList.add(event.child("space").getValue().toString());
-//                            noParticipantsList.add("5");
-//                            eventTimeList.add(event.child("time").getValue().toString() + " - " + event.child("endTime").getValue().toString());
                         }
                         catch(Exception e)
                         {
                             Log.d("Title", event.child("name").getValue().toString());
                         }
                     }
+                }
+                if (events.size() == 0){
+                    Intent intent = new Intent(getApplicationContext(), noUpcomingEventsActivity.class);
+                    startActivity(intent);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -161,10 +147,11 @@ public class UserEventListActivity extends AppCompatActivity {
         }
     }
 
-    public void openSpecificEventActivity(String username, eventModel e){
-        Intent intent = new Intent(this, SpecificEventActivity.class);
+    public void openSpecificEventActivity(String username, eventModel e, String email){
+        Intent intent = new Intent(this, JASON_SpecificEventActivity.class);
         intent.putExtra("event", e.convertToHashMap());
         intent.putExtra("username", username);
+        intent.putExtra("email", email);
         startActivity(intent);
     }
 }

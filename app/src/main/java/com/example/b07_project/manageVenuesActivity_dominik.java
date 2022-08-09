@@ -2,9 +2,6 @@ package com.example.b07_project;
 
 import static android.content.ContentValues.TAG;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +28,7 @@ public class manageVenuesActivity_dominik extends AppCompatActivity {
     RecyclerView recyclerView;
     Spinner spinner;
     DatabaseReference venuesRef;
-    userEventsJoinedAdapter_Dominik userEventsAdapter;
+    DOMINIK_userEventsJoinedAdapter userEventsAdapter;
     ArrayList<eventModel> list;
     ArrayList<eventModel> filteredList;
     List<String> venueList;
@@ -74,7 +71,7 @@ public class manageVenuesActivity_dominik extends AppCompatActivity {
 
         list = new ArrayList<eventModel>();
         filteredList = new ArrayList<eventModel>();
-        userEventsAdapter = new userEventsJoinedAdapter_Dominik(this, filteredList);
+        userEventsAdapter = new DOMINIK_userEventsJoinedAdapter(this, filteredList);
         recyclerView.setAdapter(userEventsAdapter);
 
         venuesRef.addValueEventListener(new ValueEventListener() {

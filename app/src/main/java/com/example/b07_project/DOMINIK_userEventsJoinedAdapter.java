@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class userEventsJoinedAdapter_Dominik extends RecyclerView.Adapter<userEventsJoinedAdapter_Dominik.UserEventsViewholder> {
+public class DOMINIK_userEventsJoinedAdapter extends RecyclerView.Adapter<DOMINIK_userEventsJoinedAdapter.UserEventsViewholder> {
     Context context;
     ArrayList<eventModel> events;
     ArrayList<eventModel> eventsCopy;
 
-    public userEventsJoinedAdapter_Dominik(Context context, ArrayList<eventModel> list) {
+    public DOMINIK_userEventsJoinedAdapter(Context context, ArrayList<eventModel> list) {
         this.context = context;
         this.events = list;
         this.eventsCopy = new ArrayList<eventModel>(list);
@@ -25,9 +25,9 @@ public class userEventsJoinedAdapter_Dominik extends RecyclerView.Adapter<userEv
 
     @NonNull
     @Override
-    public userEventsJoinedAdapter_Dominik.UserEventsViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.event_row_recycler_view_dominik, parent, false);
-        return new userEventsJoinedAdapter_Dominik.UserEventsViewholder(view);
+    public DOMINIK_userEventsJoinedAdapter.UserEventsViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dominik_event_row_recycler_view, parent, false);
+        return new DOMINIK_userEventsJoinedAdapter.UserEventsViewholder(view);
     }
 
     @Override

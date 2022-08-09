@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".noEventScheduledActivity">
+    tools:context=".noUpcomingEventsActivity">
 
     <TextView
         android:id="@+id/noEventScheduledJoined"
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:gravity="center"
-        android:text="No Events Scheduled!"
+        android:text="No Upcoming Events :("
         android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
