@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,9 +30,9 @@ public class manageVenuesActivity_dominik extends AppCompatActivity {
     RecyclerView recyclerView;
     Spinner spinner;
     DatabaseReference venuesRef;
-    DOMINIK_userEventsJoinedAdapter userEventsAdapter;
+    DOMINIK_manageVenuesEventsAdapter userEventsAdapter;
     ArrayList<eventModel> list;
-    ArrayList<eventModel> filteredList;
+    ArrayList<eventModel> oldList;
     List<String> venueList;
     String filteredVenue = "";
 
@@ -39,8 +41,8 @@ public class manageVenuesActivity_dominik extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manage_venue_activity_rv_spinner_dominik);
 
-        //String spinnerVenueText = spinner.getSelectedItem().toString();
         recyclerView = findViewById(R.id.adminManageVenuesRVid);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         Spinner spinner = (Spinner) findViewById(R.id.adminVenueSpinnerid);
         venuesRef = FirebaseDatabase.getInstance().getReference().child("Venues");
 
@@ -51,7 +53,10 @@ public class manageVenuesActivity_dominik extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot shot : snapshot.getChildren()) {
                     String venue = shot.child("venueName").getValue(String.class);
-                    allVenues.add(venue);
+                    if(!(allVenues.contains(venue))){
+                        allVenues.add(venue);
+                    }
+
                 }
 
                 venueList = allVenues;
@@ -70,8 +75,9 @@ public class manageVenuesActivity_dominik extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<eventModel>();
-        filteredList = new ArrayList<eventModel>();
-        userEventsAdapter = new DOMINIK_userEventsJoinedAdapter(this, filteredList);
+        oldList = new ArrayList<eventModel>();
+        userEventsAdapter = new DOMINIK_manageVenuesEventsAdapter(this);
+        userEventsAdapter.addInfo(list, oldList);
         recyclerView.setAdapter(userEventsAdapter);
 
         venuesRef.addValueEventListener(new ValueEventListener() {
@@ -83,18 +89,19 @@ public class manageVenuesActivity_dominik extends AppCompatActivity {
                     if (temp == null) {
                         continue;
                     } else {
-                        Log.d("TAG", "1");
                         for (HashMap<String, String> value : temp.values()) {
                             if (value != null) {
-                                list.add(new eventModel(value.get("name"), value.get("date"), value.get("venue"),
+                                eventModel event = new eventModel(value.get("name"), value.get("date"), value.get("venue"),
                                         value.get("maxParticipants"), value.get("noParticipants"),
-                                        value.get("startTime"), value.get("endTime")));
-                                filteredList.add(new eventModel(value.get("name"), value.get("date"), value.get("venue"),
-                                        value.get("maxParticipants"), value.get("noParticipants"),
-                                        value.get("startTime"), value.get("endTime")));
+                                        value.get("startTime"), value.get("endTime"));
+                                if(!(list.contains(event)) && !(oldList.contains(event))) {
+                                    list.add(event);
+                                    oldList.add(event);
+                                }
                             }
                         }
                     }
+
                 }
 
                 userEventsAdapter.notifyDataSetChanged();
@@ -109,11 +116,12 @@ public class manageVenuesActivity_dominik extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)  adapterView.getChildAt(0)).setTextSize(22);
                 filteredVenue = venueList.get(i);
-                if(filteredList.equals(list)){
+                if(list.equals(oldList)){
                     userEventsAdapter.filter(filteredVenue);
                 } else {
-                    filteredList.addAll(list);
+                    list.addAll(oldList);
                     userEventsAdapter.filter(filteredVenue);
                 }
 
@@ -123,15 +131,17 @@ public class manageVenuesActivity_dominik extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 filteredVenue = "";
-                if(filteredList.equals(list)){
+                if(list.equals(oldList)){
                     userEventsAdapter.filter(filteredVenue);
                 } else {
-                    filteredList.addAll(list);
+                    list.addAll(oldList);
                     userEventsAdapter.filter(filteredVenue);
                 }
 
             }
         });
+
+
     }
 
 }

@@ -10,6 +10,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +25,6 @@ import java.util.HashMap;
 
 public class DOMINIK_UserScheduledEventRV extends AppCompatActivity {
     RecyclerView recyclerView;
-    //DatabaseReference databaseReferenceEventsJoined;
     DatabaseReference databaseReferenceEventsScheduled;
     DOMINIK_userEventsJoinedAdapter userEventsAdapter;
     ArrayList<eventModel> list;
@@ -49,11 +49,11 @@ public class DOMINIK_UserScheduledEventRV extends AppCompatActivity {
         }
         username = sharedPreferences.getString("username", null);
         email = sharedPreferences.getString("email", null);
-        //Log.d("CREATION", username);
+
 
         recyclerView = findViewById(R.id.userScheduledEventRVid);
-        //NEED TO CREATE INTENT SO THAT I CAN GET THE USER WHICH IS LOGGED IN AND DO
-        // USER + / + events
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
         databaseReferenceEventsScheduled = FirebaseDatabase.getInstance().getReference().child("user/" +
                 String.valueOf(email.hashCode()) + "/userScheduledEvents");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

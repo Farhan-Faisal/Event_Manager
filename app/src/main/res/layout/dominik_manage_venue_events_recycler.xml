@@ -104,5 +104,12 @@
                 android:id="@+id/end_time"
                 />
         </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete Event"
+            android:textSize="20dp"
+            android:id="@+id/deleteEventButtonId"
+            />
     </LinearLayout>
 </LinearLayout>

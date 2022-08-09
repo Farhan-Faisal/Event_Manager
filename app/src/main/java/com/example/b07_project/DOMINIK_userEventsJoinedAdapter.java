@@ -15,12 +15,10 @@ import java.util.ArrayList;
 public class DOMINIK_userEventsJoinedAdapter extends RecyclerView.Adapter<DOMINIK_userEventsJoinedAdapter.UserEventsViewholder> {
     Context context;
     ArrayList<eventModel> events;
-    ArrayList<eventModel> eventsCopy;
 
     public DOMINIK_userEventsJoinedAdapter(Context context, ArrayList<eventModel> list) {
         this.context = context;
         this.events = list;
-        this.eventsCopy = new ArrayList<eventModel>(list);
     }
 
     @NonNull
@@ -34,11 +32,11 @@ public class DOMINIK_userEventsJoinedAdapter extends RecyclerView.Adapter<DOMINI
     public void onBindViewHolder(@NonNull UserEventsViewholder holder, int position) {
         eventModel user = events.get(position);
         holder.name.setText(user.getName());
-        holder.noParticipants.setText(user.getNoParticipants());
-        holder.date.setText(user.getDate());
-        holder.startTime.setText(user.getStartTime());
-        holder.endTime.setText(user.getStartTime());
-        holder.venue.setText(user.getVenue());
+        holder.noParticipants.setText("No. Participants: " + user.getNoParticipants());
+        holder.date.setText("Date: " + user.getDate());
+        holder.startTime.setText("Start Time: " + user.getStartTime());
+        holder.endTime.setText("End Time: " + user.getStartTime());
+        holder.venue.setText("Venue: " + user.getVenue());
         holder.space.setText(user.getSpace());
     }
 
@@ -48,10 +46,9 @@ public class DOMINIK_userEventsJoinedAdapter extends RecyclerView.Adapter<DOMINI
 
         events.clear();
         if(filterVenue.length() == 0){
-            events.addAll(eventsCopy);
+            events.addAll(temp);
         } else {
             for (int i = 0; i < temp.size(); i++) {
-                Log.d("TAG", temp.get(i).venue);
                 if (temp.get(i).venue.compareTo(filterVenue) == 0) {
                     events.add(temp.get(i));
                 }
@@ -79,6 +76,8 @@ public class DOMINIK_userEventsJoinedAdapter extends RecyclerView.Adapter<DOMINI
             endTime = itemView.findViewById(R.id.end_time);
             venue = itemView.findViewById(R.id.venue);
             space = itemView.findViewById(R.id.space);
+
+
         }
     }
 }

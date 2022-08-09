@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +26,6 @@ import java.util.HashMap;
 public class DOMINIK_userJoinedEventRV extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference databaseReferenceEventsJoined;
-    //DatabaseReference databaseReferenceEventsScheduled;
     DOMINIK_userEventsJoinedAdapter userEventsAdapter;
     ArrayList<eventModel> list;
 
@@ -52,8 +52,7 @@ public class DOMINIK_userJoinedEventRV extends AppCompatActivity {
         email = sharedPreferences.getString("email", null);
 
         recyclerView = findViewById(R.id.userJoinedEventRVid);
-        //NEED TO CREATE INTENT SO THAT I CAN GET THE USER WHICH IS LOGGED IN AND DO
-        // USER + / + events
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         databaseReferenceEventsJoined = FirebaseDatabase.getInstance().getReference().child("user/" +
                 String.valueOf(email.hashCode()) + "/userEventsJoined");
         recyclerView.setHasFixedSize(true);
