@@ -238,14 +238,18 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
             {
-                hour2 = selectedHour;
-                minute2 = selectedMinute;
-                eventEndTime.setText(String.format(Locale.getDefault(), "%02d:%02d",hour2, minute2));
+                if ((selectedHour>hour && selectedHour<=23) || (selectedHour==hour && selectedMinute>minute && selectedMinute<59)) {
+                    hour2 = selectedHour;
+                    minute2 = selectedMinute;
+                    eventEndTime.setText(String.format(Locale.getDefault(), "%02d:%02d",hour2, minute2));
+                } else {
+                    Toast.makeText(FARHAN_UserScheduleActivity.this, "End Time should be more then Start Time and end before next day", Toast.LENGTH_LONG).show();
+                    popTimePicker2(view);
+                }
             }
         };
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(this,onTimeSetListener, hour2, minute2, true);
-
         timePickerDialog.setTitle("Select End Time");
         timePickerDialog.show();
     }
