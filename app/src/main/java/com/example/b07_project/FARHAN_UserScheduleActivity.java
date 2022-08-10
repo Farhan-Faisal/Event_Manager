@@ -282,7 +282,6 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
         };
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(this,onTimeSetListener, hour2, minute2, true);
-
         timePickerDialog.setTitle("Select End Time");
         timePickerDialog.show();
     }
