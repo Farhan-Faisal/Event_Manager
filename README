@@ -1,0 +1,28 @@
+Authors
+  - Dominik Luszczynski
+  - Farhan Bin Faisal
+  - Aviraj Waraich
+  - Jason Li
+
+Description
+  - App for scheduling and joining events at venues listed on the app
+
+Notes
+    Usage Notes
+    - The homepage will contain 4 buttons
+    - The first button enables seeing and joining upcoming events
+        - To join an event, need to click on the particular event item from the list
+    - For user story 7, the admin may need to refresh the screen after deleting an event
+
+    Admin Credentials
+    - Name: Admin
+    - Password: Admin
+
+    Github
+    - We were using another repo at the beginning but were uploading filed via upload
+    - The link of that repo is given below so that the history of contributions can be noted
+                  https://github.com/jasonl-18/CSCB07_Project.git
+    - During the second week, we created the current repo and have been using it in the traditional way from within android studio
+        - The commits by @Farhan may be higher as I merged some code manually (contributed by other group members)
+        - Major contributions are noted in the document named "Major Contributions"
+    - The final copy is in the branch: "group_copy"
