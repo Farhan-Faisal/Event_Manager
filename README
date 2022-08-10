@@ -1,13 +1,13 @@
-Authors
+Authors:
   - Dominik Luszczynski
   - Farhan Bin Faisal
   - Aviraj Waraich
   - Jason Li
 
-Description
+Description:
   - App for scheduling and joining events at venues listed on the app
 
-Notes
+Notes:
     Usage Notes
     - The homepage will contain 4 buttons
     - The first button enables seeing and joining upcoming events
@@ -26,3 +26,8 @@ Notes
         - The commits by @Farhan may be higher as I merged some code manually (contributed by other group members)
         - Major contributions are noted in the document named "Major Contributions"
     - The final copy is in the branch: "group_copy"
+    
+Jira:
+    https://dominikluszcz.atlassian.net/jira/software/projects/B07PROJ/boards/1
+    SCRUM LINK:
+    https://dominikluszcz.atlassian.net/jira/software/projects/B07PRJ/boards/2
