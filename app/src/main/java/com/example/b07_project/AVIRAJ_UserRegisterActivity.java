@@ -86,6 +86,10 @@ public class AVIRAJ_UserRegisterActivity extends AppCompatActivity {
             Toast.makeText(AVIRAJ_UserRegisterActivity.this,"Password Not Matching",Toast.LENGTH_SHORT).show();
             return false;
         }
+        if(PasswordString.length()<6){
+            Toast.makeText(AVIRAJ_UserRegisterActivity.this,"Use 6 or More Characters ",Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 
