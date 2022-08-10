@@ -15,8 +15,8 @@ Notes:
     - For user story 7, the admin may need to refresh the screen after deleting an event
 
     Admin Credentials
-    - Name: Admin
-    - Password: Admin
+    - Name: admin
+    - Password: admin
 
     Github
     - We were using another repo at the beginning but were uploading filed via upload
