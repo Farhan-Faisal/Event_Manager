@@ -1,0 +1,43 @@
+Dominik Luszczynski
+  - User Story 4
+      - Implented recycler view to smoothly show list of events (both scheduled and joined)
+      - Others members were able to switch to using recycler view from list view following this
+  - User Story 7
+      - Enabled filtering of events by venue so that a list of venue appears when a venue is selected from the spinner
+      - Made good use of the spinner feature
+      - As part of "securely managing events at a venue", the admin can delete events at venues
+      
+  
+Aviraj Waraich
+ - User Story 1 and User Story 5
+      - Made an awesome looking user and admin page
+      - Implemented user story 1 so that the email.hashCode() of the user was used as the push key in firebase
+      - This made future queries a lot faster
+ - Implemented user story 6
+      - Used pop up time pickers and calenders to ensure the UI is comfortable for the USER
+ - Helped in user story 2
+      - Came up with a function to figure out if there was a clash when scheduling events
+      - Modified the pop up time picker so that end time could not be 
+      
+      
+ Farhan Bin Faisal
+ - Imlemented User story 2
+      - Used recycler view with custom adapter (following dominik) to show a list of existing venues
+      - Ensured that the user can join events or schedule events from each venue in the list (by pressing the custom buttons)
+      - Merged with pop up time picker modifier and clash detection function made by Aviraj
+ - Ensured the UI is uniform throughout 
+      - This includes font sizes, recycler node templates, buttons, and colors
+ - Implemented User Story 3
+      - Jason Li created the list view of upcoming events
+      - I extended it so that the user can click on the list items and join the event
+ 
+
+Jason Li
+  - User story 2 (partial)
+  - Used list view with custom adapter to show list of events not yet joined by the user
+  - Was supposed to do user story 7 and merge with a good UI but he was no longer active for the last few days (for some readon)
+  - Helped to figure out how to use Github from within android studio
+  
+  
+ Jason Jeong (Hyunmo)
+      - Dropped the course
