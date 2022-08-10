@@ -35,7 +35,7 @@ public class AVIRAJ_AdminHomepageActivity extends AppCompatActivity {
     }
 
     public void openManageVenues(){
-        Intent intent = new Intent(this, manageVenuesActivity_dominik.class);
+        Intent intent = new Intent(this, DOMINIK_manageVenuesActivity.class);
         startActivity(intent);
     }
 }

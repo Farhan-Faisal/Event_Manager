@@ -18,7 +18,7 @@
             android:exported="false"
             android:parentActivityName=".FARHAN_UserHomepageActivity" />
         <activity
-            android:name=".manageVenuesActivity_dominik"
+            android:name=".DOMINIK_manageVenuesActivity"
             android:exported="false"
             android:parentActivityName=".AVIRAJ_AdminHomepageActivity" />
         <activity

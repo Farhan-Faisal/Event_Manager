@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class manageVenuesActivity_dominik extends AppCompatActivity {
+public class DOMINIK_manageVenuesActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Spinner spinner;
     DatabaseReference venuesRef;
@@ -46,7 +46,7 @@ public class manageVenuesActivity_dominik extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.adminVenueSpinnerid);
         venuesRef = FirebaseDatabase.getInstance().getReference().child("Venues");
 
-        venuesRef.addValueEventListener(new ValueEventListener() {
+        venuesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             List<String> allVenues = new ArrayList<String>();
 
             @Override
@@ -60,7 +60,7 @@ public class manageVenuesActivity_dominik extends AppCompatActivity {
                 }
 
                 venueList = allVenues;
-                ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(manageVenuesActivity_dominik.this, android.R.layout.simple_spinner_dropdown_item, allVenues);
+                ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(DOMINIK_manageVenuesActivity.this, android.R.layout.simple_spinner_dropdown_item, allVenues);
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(spinnerAdapter);
             }
