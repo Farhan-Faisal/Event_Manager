@@ -1,6 +1,7 @@
 package com.example.b07_project;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -9,6 +10,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,10 +29,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 
 public class FARHAN_UserScheduleActivity extends AppCompatActivity {
@@ -57,8 +62,10 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
     DatabaseReference dbref;
     DatabaseReference dbref2;
 
-    String userKey;
     String venueKey;
+    String email;
+
+    HashSet<eventModel> venueEvents = new HashSet<>();
 
     TextView maxParticipants;
 
@@ -70,17 +77,19 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
         sp = getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
 
         // Retrieve data from intent into shared preference
-        if(getIntent().hasExtra("username")){
+        if (getIntent().hasExtra("username")) {
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("username", getIntent().getStringExtra("username"));
             editor.putString("venueName", getIntent().getStringExtra("venueName"));
             editor.putString("venueSports", getIntent().getStringExtra("venueSports"));
+            editor.putString("email", getIntent().getStringExtra("email"));
+
             editor.commit();
         }
         username = sp.getString("username", null);
         venueName = sp.getString("venueName", null);
         venueSports = sp.getString("venueSports", null);
-        Log.d("SPORTS", venueSports);
+        email = sp.getString("email", null);
         SportsArray = venueSports.split("\\,");
 
         SportParticipant.put("BasketBall", "12");
@@ -118,10 +127,11 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
                     }
                 });
 
-                builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener(){
+                builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
 
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
                 });
 
                 // Show alert
@@ -131,9 +141,9 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
 
         // Implement date button functionality
         Calendar calendar = Calendar.getInstance();
-        final int year  = calendar.get(Calendar.YEAR);
-        final int month  = calendar.get(Calendar.MONTH);
-        final int day  = calendar.get(Calendar.DAY_OF_MONTH);
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
         eventDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,10 +151,10 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month = month + 1;
-                        String date = day+"/"+month+"/"+year;
+                        String date = day + "/" + month + "/" + year;
                         eventDate.setText(date);
                     }
-                },year,month,day);
+                }, year, month, day);
                 datePickerDialog.show();
             }
         });
@@ -165,55 +175,77 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                         // Got the venue push key
-                        for (DataSnapshot snap : snapshot.getChildren()){
+                        for (DataSnapshot snap : snapshot.getChildren()) {
                             String n = snap.child("venueName").getValue().toString();
-                            if (n.compareTo(venueName) == 0){
+                            if (n.compareTo(venueName) == 0) {
                                 venueKey = snap.getKey();
                             }
                         }
 
                         // Added event in appropriate venue node
                         DataBaseClass checker = new DataBaseClass("Venues/" + venueKey + "/venueEvents");
-                        checker.add(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        checker.dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(getApplicationContext(), "Event scheduled successfully", Toast.LENGTH_SHORT).show();
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                boolean clash = false;
+                                if (snapshot.getChildrenCount() == 0) {
+                                    checker.add(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(getApplicationContext(), "Event scheduled successfully", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                    updateUserScheduledNode(m, false);
+                                }
+
+                                else {
+                                    for (DataSnapshot events : snapshot.getChildren()) {
+                                        eventModel node = events.getValue(eventModel.class);
+
+                                        if ((m.getName()).compareTo(node.getName()) == 0 && (m.getDate()).compareTo(node.getDate()) == 0) {
+                                            if (Timechecker(node.getStartTime(), node.getEndTime(), m.getStartTime(), m.getEndTime()) == true) {
+                                                clash = true;
+                                                Toast.makeText(getApplicationContext(), "Sorry, Please change your time. There is already booking for the event from " + node.getStartTime() + " till " + node.getEndTime(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    }
+
+                                    if (clash == false){
+                                        checker.add(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Toast.makeText(getApplicationContext(), "Event scheduled successfully", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        updateUserScheduledNode(m, false);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
                             }
                         });
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {}
-                });
-
-                // Add event in user node
-                dbref2 = FirebaseDatabase.getInstance().getReference().child("user");
-                dbref2.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        // Got the user push key
-                        for (DataSnapshot snap : snapshot.getChildren()){
-                            String n = snap.child("username").getValue().toString();
-                            if (n.compareTo(username) == 0){
-                                userKey = snap.getKey();
-                            }
-                        }
-                        DataBaseClass checker = new DataBaseClass("user/" + userKey + "/userScheduledEvents");
-                        checker.add(m).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(getApplicationContext(), "Event scheduled successfully", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                    public void onCancelled(@NonNull DatabaseError error) {
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {}
                 });
             }
         });
     }
 
+    public void updateUserScheduledNode(eventModel m, boolean clash){
+        DataBaseClass checker2 = new DataBaseClass("user/" + email.hashCode() + "/userScheduledEvents");
+        checker2.add(m).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                // Toast.makeText(getApplicationContext(), "Event scheduled successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    
     public void popTimePicker(View view) {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
         {
@@ -238,9 +270,14 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
             {
-                hour2 = selectedHour;
-                minute2 = selectedMinute;
-                eventEndTime.setText(String.format(Locale.getDefault(), "%02d:%02d",hour2, minute2));
+                if ((selectedHour>hour && selectedHour<=23) || (selectedHour==hour && selectedMinute>minute && selectedMinute<59)) {
+                    hour2 = selectedHour;
+                    minute2 = selectedMinute;
+                    eventEndTime.setText(String.format(Locale.getDefault(), "%02d:%02d",hour2, minute2));
+                } else {
+                    Toast.makeText(FARHAN_UserScheduleActivity.this, "End Time should be more then Start Time and end before next day", Toast.LENGTH_LONG).show();
+                    popTimePicker2(view);
+                }
             }
         };
 
@@ -248,5 +285,36 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
 
         timePickerDialog.setTitle("Select End Time");
         timePickerDialog.show();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public boolean Timechecker(String Start, String End, String NewStartTime, String NewEndTime) {
+        //DateTimeFormatter.ofPattern()
+        DateTimeFormatter Format = DateTimeFormatter.ofPattern("HH:mm",Locale.CANADA);
+        LocalTime start = LocalTime.parse(Start, Format);
+        LocalTime end = LocalTime.parse(End, Format);
+        LocalTime NewStart = LocalTime.parse(NewStartTime, Format);
+        LocalTime NewEnd = LocalTime.parse(NewEndTime, Format);
+
+        if(Start.matches(NewStartTime+"|"+NewEndTime) || End.matches(NewStartTime+"|"+NewEndTime))
+            return true;
+
+        if (end.isAfter(start)) {
+            if (start.isBefore(NewStart) && end.isAfter(NewStart)) {
+                return true;
+            }
+        } else if (NewStart.isAfter(start) || NewStart.isBefore(end)) {
+            return true;
+        }
+
+        if (end.isAfter(start)) {
+            if (start.isBefore(NewEnd) && end.isAfter(NewEnd)) {
+                return true;
+            }
+        } else if (NewEnd.isAfter(start) || NewEnd.isBefore(end)) {
+            return true;
+        }
+
+        return false;
     }
 }

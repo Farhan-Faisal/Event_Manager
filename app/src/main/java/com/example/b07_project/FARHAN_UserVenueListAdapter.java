@@ -91,6 +91,7 @@ public class FARHAN_UserVenueListAdapter extends RecyclerView.Adapter<FARHAN_Use
                     intent.putExtra("username", username);
                     intent.putExtra("venueName", venueList.get(getAdapterPosition()).getVenueName());
                     intent.putExtra("venueSports", venueList.get(getAdapterPosition()).getSports());
+                    intent.putExtra("email", email);
                     view.getContext().startActivity(intent);
                 }
             });
