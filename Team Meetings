@@ -1,0 +1,68 @@
+Meeting 1 || July 26, 2022
+    - Group Member introduction
+            - Farhan (F)
+            - Aviraj (A)
+            - Jason (J)
+            - Dominik (D)
+            - Hyunmo (H)
+    - We completed Story pointing (on a scale of 1-5)
+            - User Story 1 (Difficulty: 2) 
+            - User Story 2 (Difficulty: 4) (Farhan)
+            - User Story 3 (Difficulty: 3) (Jason)
+            - User Story 4 (Difficulty: 3) (Dominik)
+            - User Story 5 (Difficulty: 1) 
+            - User Story 6 (Difficulty: 3) (Aviraj)
+            - User Story 7 (Difficulty: 4) (Hyunmo)
+    - Dominik Assigned User stories to group members (and to Sprints) on Jira
+
+
+Meeting 2 || August 01, 2022
+    - Jason has built a good User login UI
+    - Hyunmo has built an Admin Login Page
+    - We are more familiar with Firebase and Android studio in general
+    - We are still working on our versions of the user stories
+    - Dominik, Farhan, and Aviraj displayed their progress on User Stories 4, 2, 6 respectively
+    - We are still using dummy data instead of the group firebase
+    - Members reminded to add standups to GITHUB
+    
+    
+Meeting 3 || August 04, 2022
+    - We agreed on a datastructure to use for venues/Events
+    - Firebase now has the overall datastructure
+    - Group Members will modify User Stories to use the Group Firebase instead of dummy data
+    - User Story 1, 2 (Farhan), 6 (Aviraj) done and merged (Using Firebase and not dummy data)
+    - User Story 1 and 5 i.e. the login pages will be done by 
+            - Farhan 
+            - Aviraj
+            - Jason Jeong
+          - The best one will be used at the end
+    - Dominik is working on User story 4 (Will be done by tomorrow)
+    - Hyunmo is working on User Story 7 
+    - Jason is working on User Story 3 
+    - Members reminded to add standups to GITHUB
+    - Learned to push and pull to github from within android sudio
+    
+Meeting 3 || August 04, 2022
+    - We agreed on a datastructure to use for venues/Events
+    - Firebase now has the overall datastructure
+    - Group Members will modify User Stories to use the Group Firebase instead of dummy data
+    - User Story 1, 2 (Farhan), 6 (Aviraj) done and merged (Using Firebase and not dummy data)
+    - User Story 1 and 5 i.e. the login pages will be done by 
+            - Farhan 
+            - Aviraj
+            - Jason Jeong
+          - The best one will be used at the end
+    - Dominik is working on User story 4 (Will be done by tomorrow)
+    - Hyunmo is working on User Story 7 
+    - Jason is working on User Story 3 
+    - Members reminded to add standups to GITHUB
+    - Learned to push and pull to github from within android sudio
+
+Meeting 4 || August 08, 2022
+    - Hyunmo dropped the course
+    - Jason was supposed to merge the code with his better UI. But he did not show up for the last 5 days
+    - Aviraj will create a function that checks whether a newly scheduled event will clash with any events in a list of events
+    - Dominik will add the delete event feature for user story 7
+    - I am doing bug fixes and making the overall UI uniform
+    - We will hopefully be done by August 9
+
