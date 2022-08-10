@@ -1,0 +1,341 @@
+July 28
+
+Name:  Dominik Luszczynski
+What have you done since yesterday?
+          	- Familiarize myself with Android Studio.
+          	- Start working on a sample version of my assigned user story (trying to make a working RecyclerView)
+What are you planning on doing today?
+          	- Try and finish my sample user story, fixing the issues I have with it.
+Any impediments or stumbling blocks?
+          	- Lack of time with classes and tons of assignments.
+          	- Sample RecyclerView is not responding at the moment, I need to figure out the issue with it.
+
+Name: Aviraj Waraich
+What have you done since yesterday?
+          - Met up and started with logging into accounts and seeing how the project will work around
+What are you planning on doing today?
+          - Trying to see what part of the app I can get started with
+Any impediments or stumbling blocks?
+          - Laziness and slow Android Studio
+
+Name:  Farhan Bin Faisal
+What have you done since yesterday?
+          	- Familiarize myself with Android Studio.
+          	- Learning to use intents and putExtra method to send more information from one activity to next
+What are you planning on doing today?
+          	- Learn to use Shared Preferences so that 
+Any impediments or stumbling blocks?
+          	- Pressing back button to return to previous activity then clicking button to go to next activity produces error
+                    - So value that was being passed to next activity via intent is not being saved
+
+Name:  Jason Li
+What have you done since yesterday?
+                    - familiarize with Android Studio
+                   
+What are you planning on doing today?
+                    - use FireAuth to create login 
+Any impediments or stumbling blocks?
+                    - other assignments
+Name:  Hyunmo Jeong
+What have you done since yesterday?
+                    - Get familiar with Android Studio
+                    - Create a demo version of the application
+What are you planning on doing today?
+                    - Try to make a login/register page
+Any impediments or stumbling blocks?
+                    - Time management with the other assignments
+                  
+------------------------------------------------------------------------------------------------------------------------------------------
+July 29
+
+Name:  Dominik Luszczynski
+What have you done since yesterday?
+          	- Finished my sample user story, so that it is ready to be copied and tweaked once the login is uploaded.
+          	- Fixed issue that I had yesterday (I assumed the database as all strings when the Players field was a number).
+What are you planning on doing today?
+          	- Make tweaks to the UI possibly.
+Any impediments or stumbling blocks?
+          	- Lack of time with classes and tons of assignments.
+
+Name: Aviraj Waraich
+What have you done since yesterday?
+          - Starting looking a Android Studio and leanring how the databases works.
+What are you planning on doing today?
+          - Getting familiarize with Android Studio, JIRA and firebase
+Any impediments or stumbling blocks?
+          - coop assignmened work and laziness
+
+Name:  Jason Li
+What have you done since yesterday?
+                    - created Firebase account
+                   
+What are you planning on doing today?
+                    - continue with using FireAuthUI to create login 
+Any impediments or stumbling blocks?
+                    - other assignments
+                    
+Name:  Farhan Bin Faisal
+What have you done since yesterday?
+          	- Learn to use shared preferences
+          	- These are a better way to save information independent of activities
+                    - So I use this to get information into an activity regardless of how many times I go back and forth between activities using the
+                    backbutton
+What are you planning on doing today?
+          	- Learn to use ListView with Custom Objects
+                    - Learn to implement my own adapter class
+Any impediments or stumbling blocks?
+          	- I am trying to implement listview with custom objects to complete user story 2
+                    - But putting buttons on list view items is making the code very cluttered
+                    - Need to figure out a better way to do things
+                   
+Name:  Hyunmo Jeong
+What have you done since yesterday?
+                    - Finishing up a login/register page and connect to a firebase
+What are you planning on doing today?
+                    - Getting firebase set up for a login/register page
+Any impediments or stumbling blocks?
+                    - Figuring out how to access to data stored in firebase
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+August 1
+Name:  Dominik Luszczynski
+What have you done since yesterday?
+                  - Did research on how to keep track of which user is logged into the app.
+
+What are you planning on doing today?
+                  - Try to implement it in my test user story.
+
+Any impediments or stumbling blocks?
+                  - Assignments from other courses.
+                  - Android studio can be a bit slow
+
+Name:  Jason Li
+What have you done since yesterday?
+                    - created Firebase account
+                   
+What are you planning on doing today?
+                    - continue with using FireAuthUI to create login 
+Any impediments or stumbling blocks?
+                    - other assignments
+Name: Aviraj Waraich
+What have you done since yesterday?
+          - Wroked getting the admin buttons
+What are you planning on doing today?
+          - Wrokon getting started with textedit
+Any impediments or stumbling blocks?
+          - None
+          
+------------------------------------------------------------------------------------------------------------------------------------------
+August 02
+Name:  Dominik Luszczynski
+What have you done since yesterday?
+        - Attended a meeting about merging our user stories and the direction of the sprint.
+What are you planning on doing today?
+        - Polish the user story.
+        - Figure out branches in visual studio code (android section is empty and I am not too sure how to add an entre new app folder (only option is add new file))
+        - uploaded files I create in a branch to GitHub as a compromise
+Any impediments or stumbling blocks?
+        - Assignments from other courses.
+        - Android studio can be a bit slow when other apps are running
+        - Branches in visual studio code (see planning on doing today section for clarification)
+
+Name:  Farhan Bin Faisal
+What have you done since yesterday?
+          	- Implemented user story 2 using ListView with dummy Venue Objects
+What are you planning on doing today?
+          	- Try to extract venues from firebase and use those instead of mock data
+                    - Implement a join event button on each venue item which will all the user to see/join all events from that particular venue
+Any impediments or stumbling blocks?
+          	- I am not able to figure out how to extract nexted lists from firebase
+                    - Each Venue node has a list of eventNodes that contain event information
+                    - Need to figure this out
+                    
+
+Name:  Jason Li
+What have you done since yesterday?
+                    - created navigation drawer UI
+                   
+What are you planning on doing today?
+                    - start with user story 3 
+Any impediments or stumbling blocks?
+                    - pushing and pulling from github is not working - need to figure how to
+                    
+Name: Aviraj Waraich
+What have you done since yesterday?
+          - Completed the Buttons to save user informnation
+What are you planning on doing today?
+          - Work on the getting started with the user infromation screen so admin can check if into is good
+Any impediments or stumbling blocks?
+          - None
+
+Name:  Hyunmo Jeong
+What have you done since yesterday?
+                    - Start implementing user story 7 and create a data structure for venue
+What are you planning on doing today?
+                    - Implement recyclerview to list the venues and implement quering algorithm
+Any impediments or stumbling blocks?
+                    - Using adapter and recyclerview took me a long time to implement
+                    
+------------------------------------------------------------------------------------------------------------------------------------------
+August 03
+Name:  Dominik Luszczynski
+What have you done since yesterday?
+                  - Attended a meeting about merging our user stories and the direction of the sprint.
+                  - Upload files for RecyclerView and User Story 4 so that others can copy and use it for listing events.
+What are you planning on doing today?
+                  - Make the UI look nicer.
+Any impediments or stumbling blocks?
+                  - Assignments from other courses.
+                  - Android studio can be a bit slow when other apps are running
+                  - Branches in visual studio code, will wait for someone to upload the login pages for the app, then add my files from there.
+                  
+Name:  Farhan Bin Faisal
+What have you done since yesterday?
+          	- Implemented the Join event button in each Venue row
+                    - User can now Schedule/join events from the Venue List View Page
+                    - I learned how to use HashMaps to extract nested data from firebase
+What are you planning on doing today?
+          	- Merge my code with my GroupMates to make a functional app
+Any impediments or stumbling blocks?
+          	- Some of our data structures are not exactly alike
+                    - Need to agree on Event and Venue data structures before merging
+
+Name: Aviraj Waraich
+What have you done since yesterday?
+          - Completed the user screeen and the given taks
+What are you planning on doing today?
+          - Preping for the interview tommmorrow.
+Any impediments or stumbling blocks?
+          - None
+          
+Name:  Hyunmo Jeong
+What have you done since yesterday?
+                    - Finish up with my user story and attend a meeting
+What are you planning on doing today?
+                    - Figuring out and implementing additional features other than just quering venues for user story 7.
+Any impediments or stumbling blocks?
+                    - Improving UI of the activities that I have already made.
+          
+
+------------------------------------------------------------------------------------------------------------------------------------------
+August 4
+
+Name:  Dominik Luszczynski
+What have you done since yesterday?
+        - Not too much, busy with other assignments in other classes.
+What are you planning on doing today?
+        - Attend meeting for preparation before TA meeting on Friday.
+        - Add events joined and events scheduled activities in our new merged version
+Any impediments or stumbling blocks?
+        - Assignments from other courses.
+        - Android studio is very slow sometimes
+        - Had issues with branches but Farhan and Jason seemed to resolve it!
+
+Name:  Jason Li
+What have you done since yesterday?
+                    - successfully integrated github and android studios
+               
+What are you planning on doing today?
+                    - finish user story 3 
+Any impediments or stumbling blocks?
+                    - other assignments
+                    
+Name: Aviraj Waraich
+What have you done since yesterday?
+          - Starting working on the login pages
+What are you planning on doing today?
+          - Complete the registarting user 
+Any impediments or stumbling blocks?
+          - other assignments 
+------------------------------------------------------------------------------------------------------------------------------------------
+August 5
+Name:  Jason Li
+What have you done since yesterday?
+                    - Finished user story 3 - users are now able to view events
+What are you planning on doing today?
+                    - work on SpecificEvent UI
+Any impediments or stumbling blocks?
+                    - Time management with the other assignments 
+
+Name: Farhan Bin Faisal
+What have you done since yesterday?
+                    - Familiarize with using GitHub from within android studio
+What are you planning on doing today?
+                    - Make the UI uniform throughout all activities
+Any impediments or stumbling blocks?
+                    - We might need to use another github altogether :(
+                    
+Name:  Dominik Luszczynski
+What have you done since yesterday?
+        - Attend meeting with TA, updated new version of joined and scheduled events
+What are you planning on doing today?
+        -Work on user story 7
+Any impediments or stumbling blocks?
+        - Assignments from other courses.
+        - Android studio is very slow sometimes
+        - Had issues with branches but Farhan and Jason seemed to resolve it!
+        
+Name: Aviraj Waraich
+What have you done since yesterday?
+          - Complete the Login and getting information of registaration
+What are you planning on doing today?
+          - Complete registaration of admin/user
+Any impediments or stumbling blocks?
+          - different class lecture and  assignments 
+------------------------------------------------------------------------------------------------------------------------------------------
+August 8
+Name: Farhan Bin Faisal
+What have you done since yesterday?
+                    - Fixed a bug so that addition or joining an event by a user updates the participant count of the particular event throughout
+                    the database
+What are you planning on doing today?
+                    - Merge with Aviraj's admin login activities
+Any impediments or stumbling blocks?
+                    - Time management with the other assignments 
+                    
+Name:  Dominik Luszczynski
+What have you done since yesterday?
+        - Finished first half of user story 7 (apart from the delete function)
+What are you planning on doing today?
+        - Finish some other assignments before finishing user story 7 tomorrow
+Any impediments or stumbling blocks?
+        - Assignments from other courses.
+        
+Name: Aviraj Waraich
+What have you done since yesterday?
+          - Compelted registaration of admin/user
+What are you planning on doing today?
+          - Goining into making different Toast
+Any impediments or stumbling blocks?
+          - Coop Assginments
+------------------------------------------------------------------------------------------------------------------------------------------
+August 9
+Name: Farhan Bin Faisal
+What have you done since yesterday?
+                    - Merged with Aviraj's admin interface code
+What are you planning on doing today?
+                    - Deployed a function that checks for timing clashes when an event is scheduled
+                    - Function made by aviraj
+Any impediments or stumbling blocks?
+                    - We are done!
+                    
+Name:  Dominik Luszczynski
+What have you done since yesterday?
+        - Worked on other assignments
+        - Finished delete function this afternoon
+        - Cleaned up ui for all recycler views
+What are you planning on doing today?
+        - Clean anything up to make it look nicer
+Any impediments or stumbling blocks?
+        - None anymore, since we have finished
+
+Name: Aviraj Waraich
+What have you done since yesterday?
+          - Compelted all of the Toast and different collusion test
+What are you planning on doing today?
+          - Finish everything and start with intense testing
+Any impediments or stumbling blocks?
+          - None
+------------------------------------------------------------------------------------------------------------------------------------------
+
