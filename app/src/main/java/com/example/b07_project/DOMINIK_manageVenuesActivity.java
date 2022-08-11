@@ -56,7 +56,6 @@ public class DOMINIK_manageVenuesActivity extends AppCompatActivity {
                     if(!(allVenues.contains(venue))){
                         allVenues.add(venue);
                     }
-
                 }
 
                 venueList = allVenues;

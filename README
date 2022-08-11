@@ -13,6 +13,9 @@ Notes:
     - The first button enables seeing and joining upcoming events
         - To join an event, need to click on the particular event item from the list
     - For user story 7, the admin may need to refresh the screen after deleting an event
+        - After deleting, sometimes the event does not go away from the screen
+        - You may need to delete twice or simple refresh/(go back and come back to the venue filter screen)
+        - The error does not appear always and it took us a long time to even detect it
 
     Admin Credentials
     - Name: admin
