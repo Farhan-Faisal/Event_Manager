@@ -46,7 +46,7 @@ public class DOMINIK_manageVenuesActivity extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.adminVenueSpinnerid);
         venuesRef = FirebaseDatabase.getInstance().getReference().child("Venues");
 
-        venuesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        venuesRef.addValueEventListener(new ValueEventListener() {
             List<String> allVenues = new ArrayList<String>();
 
             @Override
