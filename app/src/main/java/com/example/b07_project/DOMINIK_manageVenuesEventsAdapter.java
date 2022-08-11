@@ -154,7 +154,9 @@ public class DOMINIK_manageVenuesEventsAdapter  extends RecyclerView.Adapter<DOM
                                     }
                                 });
 
-                                notifyItemRemoved(holder.getAdapterPosition());
+                                notifyItemRemoved(events.indexOf(user));
+                                notifyItemRangeChanged(events.indexOf(user), events.size());
+
                             }
                         });
 
