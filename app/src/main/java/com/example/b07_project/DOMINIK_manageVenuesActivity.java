@@ -79,7 +79,6 @@ public class DOMINIK_manageVenuesActivity extends AppCompatActivity {
         userEventsAdapter = new DOMINIK_manageVenuesEventsAdapter(this);
         userEventsAdapter.addInfo(list, oldList);
         recyclerView.setAdapter(userEventsAdapter);
-
         venuesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -140,10 +139,7 @@ public class DOMINIK_manageVenuesActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
-
 }
 
 

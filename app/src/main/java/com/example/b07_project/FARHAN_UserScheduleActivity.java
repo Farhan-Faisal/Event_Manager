@@ -232,6 +232,7 @@ public class FARHAN_UserScheduleActivity extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
+                finish();
             }
         });
     }

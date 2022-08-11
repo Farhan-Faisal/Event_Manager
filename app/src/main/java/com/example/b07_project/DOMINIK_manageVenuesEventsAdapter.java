@@ -60,7 +60,7 @@ public class DOMINIK_manageVenuesEventsAdapter  extends RecyclerView.Adapter<DOM
         holder.noParticipants.setText("No. Participants: " + user.getNoParticipants());
         holder.date.setText("Date: " + user.getDate());
         holder.startTime.setText("Start Time: " + user.getStartTime());
-        holder.endTime.setText("End Time: " + user.getStartTime());
+        holder.endTime.setText("End Time: " + user.getEndTime());
         holder.venue.setText("Venue: " + user.getVenue());
         holder.space.setText(user.getSpace());
         holder.deleteEventButton.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +153,6 @@ public class DOMINIK_manageVenuesEventsAdapter  extends RecyclerView.Adapter<DOM
                                         Log.w(TAG, "Failed to read value.", error.toException());
                                     }
                                 });
-
                                 notifyItemRemoved(holder.getAdapterPosition());
                             }
                         });
@@ -167,7 +166,6 @@ public class DOMINIK_manageVenuesEventsAdapter  extends RecyclerView.Adapter<DOM
                             }
                         }
                 );
-
                 AlertDialog alertDialog = deleteAlert.create();
                 alertDialog.show();
 
@@ -212,8 +210,6 @@ public class DOMINIK_manageVenuesEventsAdapter  extends RecyclerView.Adapter<DOM
             venue = itemView.findViewById(R.id.venue);
             space = itemView.findViewById(R.id.space);
             deleteEventButton = itemView.findViewById((R.id.deleteEventButtonId));
-
-
         }
     }
 }
